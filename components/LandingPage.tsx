@@ -6,9 +6,15 @@ import React, { useEffect, useState } from 'react';
 const LandingPage = ({ children }: { children: React.ReactNode }) => {
 	const [isMobile, setIsMobile] = useState<boolean>(true);
 
+	const checkIfMobile = () => {
+		const userAgent = navigator.userAgent.toLowerCase() || '';
+		const isPhone = /mobile/i.test(userAgent);
+		return isPhone && window.innerWidth <= 768;
+	};
+
 	useEffect(() => {
 		const checkMobile = () => {
-			setIsMobile(window.innerWidth <= 768);
+			setIsMobile(checkIfMobile());
 		};
 
 		checkMobile();

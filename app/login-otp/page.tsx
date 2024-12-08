@@ -30,7 +30,7 @@ export default function LoginOtpPage() {
 		  };
 
 	const handleSubmit = () => {
-		router.push('/login-opt');
+		router.push('/');
 	};
 
 	return (
