@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Background } from '@/components/hoc/Background';
 import { CLTLogo } from '@/icons/clt-logo';
+import { SeparateText } from '@/components/separate';
 
 export default function LoginOtpPage() {
 	const [phone, setPhone] = useState('');
@@ -30,7 +31,7 @@ export default function LoginOtpPage() {
 		  };
 
 	const handleSubmit = () => {
-		router.push('/login-opt');
+		router.push('/login-otp');
 	};
 
 	return (
@@ -69,18 +70,12 @@ export default function LoginOtpPage() {
 						radius='sm'
 						className={`font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${continueButtonColor}`}
 						disabled={!phone.length}
-						onClick={handleSubmit}
+						onPress={handleSubmit}
 					>
 						Continue
 					</Button>
 
-					<div className='flex items-center'>
-						<div className='flex-grow border-t border-[#111111] opacity-15'></div>
-						<span className='mx-4 text-neutral-700 text-[14px]'>
-							OR
-						</span>
-						<div className='flex-grow border-t border-[#111111] opacity-15'></div>
-					</div>
+					<SeparateText text='OR' />
 
 					<Button
 						radius='sm'
