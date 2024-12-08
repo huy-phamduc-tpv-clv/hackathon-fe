@@ -4,7 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 interface TokenState {
 	token: string;
 	setToken: (newToken: string) => void;
-	removeToken: (newToken: string) => void;
+	removeToken: () => void;
 	hasToken: () => boolean;
 }
 

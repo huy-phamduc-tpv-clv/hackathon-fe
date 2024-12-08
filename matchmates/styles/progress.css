@@ -1,0 +1,15 @@
+.progress-bar {
+	background: repeating-linear-gradient(
+		-45deg,
+		#d3d3d3,
+		#d3d3d3 10px,
+		#ffffff 10px,
+		#ffffff 20px
+	);
+	height: 100%;
+	transition: width 0.3s ease-in-out;
+}
+
+.progress-track {
+	background-color: #eaeaea;
+}
