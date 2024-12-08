@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import type { Metadata } from 'next';
 import '../styles/globals.css';
-import LandingPage from '../components/LandingPage';
+import MobileChecking from '../components/MobileChecking';
 import { NextUIProvider } from '@nextui-org/react';
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function RootLayout({
 			</head>
 			<body>
 				<NextUIProvider>
-					<LandingPage>{children}</LandingPage>
+					<MobileChecking>{children}</MobileChecking>
 				</NextUIProvider>
 			</body>
 		</html>

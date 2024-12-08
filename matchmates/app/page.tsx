@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { Background } from '../components/hoc/Background';
+import { Background } from '../components/Background';
 
 export default function Home() {
 	return (

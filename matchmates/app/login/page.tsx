@@ -7,9 +7,9 @@ import { FacebookIcon } from '../../icons/facebook';
 import { GoogleIcon } from '../../icons/google';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Background } from '@/components/hoc/Background';
+import { Background } from '@/components/Background';
 import { CLTLogo } from '@/icons/clt-logo';
-import { SeparateText } from '@/components/separate';
+import { SeparateText } from '@/components/Separate';
 
 export default function LoginOtpPage() {
 	const [phone, setPhone] = useState('');
@@ -62,7 +62,7 @@ export default function LoginOtpPage() {
 							</span>
 						}
 						size='md'
-						type='phone'
+						type='number'
 						placeholder='Please enter your mobile number'
 						style={phoneInputColor}
 					/>

@@ -2,9 +2,14 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import useToken from '@/store/useToken';
+import { useRouter } from 'next/navigation';
+import Loading from './Loading';
 
-const LandingPage = ({ children }: { children: React.ReactNode }) => {
-	const [isMobile, setIsMobile] = useState<boolean>(true);
+const MobileChecking = ({ children }: { children: React.ReactNode }) => {
+	const [isMobile, setIsMobile] = useState<boolean | null>(null);
+	const { hasToken } = useToken();
+	const router = useRouter();
 
 	const checkIfMobile = () => {
 		const userAgent = navigator.userAgent.toLowerCase() || '';
@@ -26,6 +31,22 @@ const LandingPage = ({ children }: { children: React.ReactNode }) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (isMobile === null) return;
+
+		const timer = setTimeout(() => {
+			if (isMobile && !hasToken()) {
+				router.push('/login');
+			}
+		}, 0);
+
+		return () => clearTimeout(timer);
+	}, [isMobile, hasToken, router]);
+
+	if (isMobile === null) {
+		return <Loading />;
+	}
+
 	if (!isMobile) {
 		return (
 			<Image
@@ -39,4 +60,4 @@ const LandingPage = ({ children }: { children: React.ReactNode }) => {
 	return <>{children}</>;
 };
 
-export default LandingPage;
+export default MobileChecking;

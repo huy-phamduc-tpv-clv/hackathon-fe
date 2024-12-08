@@ -1,18 +1,20 @@
 'use client';
 
-import { Background } from '@/components/hoc/Background';
+import { Background } from '@/components/Background';
 import { Button, InputOtp } from '@nextui-org/react';
-import React from 'react';
-import { SeparateText } from '@/components/separate';
+import React, { useState } from 'react';
+import { SeparateText } from '@/components/Separate';
 import { ArrowRightIcon } from '../../icons/arrow-right';
 import { ArrowLeftIcon } from '../../icons/arrow-left';
 import { useRouter } from 'next/navigation';
+import useToken from '../../store/useToken';
 
 const isFullFill = (otpInputted: string) => otpInputted.length === 4;
 
 export default function LoginOtpPage() {
-	const [otp, setOtp] = React.useState('');
+	const [otp, setOtp] = useState('');
 	const router = useRouter();
+	const { setToken } = useToken();
 
 	const configUI = !isFullFill(otp)
 		? { color: 'bg-neutral-300', buttonText: 'Continue' }
@@ -20,6 +22,11 @@ export default function LoginOtpPage() {
 				color: 'bg-primary-black',
 				buttonText: 'Verify me',
 		  };
+
+	const handleVerifyOtp = () => {
+		setToken('token-key');
+		router.push('/welcome-loading');
+	};
 
 	return (
 		<Background>
@@ -42,7 +49,7 @@ export default function LoginOtpPage() {
 						radius='sm'
 						className={`w-full mb-4 mt-1 font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${configUI.color}`}
 						disabled={!isFullFill(otp)}
-						onPress={() => router.push('/')}
+						onPress={handleVerifyOtp}
 					>
 						{configUI.buttonText}
 					</Button>
@@ -67,7 +74,7 @@ export default function LoginOtpPage() {
 						<ArrowLeftIcon />
 					</Button>
 					<Button
-						onPress={() => router.push('/')}
+						onPress={handleVerifyOtp}
 						size='lg'
 						radius='sm'
 						endContent={<ArrowRightIcon />}
