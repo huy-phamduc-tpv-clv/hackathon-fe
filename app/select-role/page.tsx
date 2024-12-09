@@ -17,8 +17,12 @@ export default function SelectRolePage() {
 		fan: false,
 	});
 
+	const isSelectedRole = Object.values(selectRole).some(Boolean);
+
 	const handleSelectRole = () => {
-		router.push('/setup-profile');
+		if (!isSelectedRole) return;
+
+		router.push('/profile');
 	};
 
 	return (
@@ -105,8 +109,10 @@ export default function SelectRolePage() {
 						size='lg'
 						radius='sm'
 						endContent={<ArrowRightIcon />}
-						className='min-w-[112px] text-neutral-900 relative'
-						isDisabled={!Object.values(selectRole).some(Boolean)}
+						className={`transition-all min-w-[112px] text-neutral-900 relative ${
+							isSelectedRole ? '' : 'bg-neutral-300'
+						}`}
+						disabled={!isSelectedRole}
 					>
 						Next
 					</Button>

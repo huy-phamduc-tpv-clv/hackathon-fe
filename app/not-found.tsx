@@ -8,7 +8,7 @@ const NotFound = () => {
 	const router = useRouter();
 
 	const backToHome = () => {
-		router.push('/');
+		router.push('/login');
 	};
 
 	return (
@@ -18,7 +18,7 @@ const NotFound = () => {
 					onPress={backToHome}
 					color='success'
 				>
-					Back To Home
+					Back To Login
 				</Button>
 			</div>
 		</Background>

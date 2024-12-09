@@ -24,6 +24,8 @@ export default function LoginOtpPage() {
 		  };
 
 	const handleVerifyOtp = () => {
+		if (otp.length !== 4) return;
+
 		setToken('token-key');
 		router.push('/welcome-loading');
 	};
@@ -48,7 +50,7 @@ export default function LoginOtpPage() {
 					<Button
 						radius='sm'
 						className={`w-full mb-4 mt-1 font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${configUI.color}`}
-						isDisabled={!isFullFill(otp)}
+						disabled={!isFullFill(otp)}
 						onPress={handleVerifyOtp}
 					>
 						{configUI.buttonText}

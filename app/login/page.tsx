@@ -31,6 +31,8 @@ export default function LoginOtpPage() {
 		  };
 
 	const handleSubmit = () => {
+		if (!phone.length) return;
+
 		router.push('/login-otp');
 	};
 
@@ -43,9 +45,9 @@ export default function LoginOtpPage() {
 				<p className='text-primary-black my-4 text-[14px]'>
 					Explore your football team, pitch and have fun.
 				</p>
-				<div className='mb-8 mt-3'>
+				<div className='mb-8 mt-3 z-10'>
 					<Image
-						className='z-10'
+						className=''
 						alt=''
 						src={'/images/login-content.png'}
 						width={285}
@@ -69,7 +71,7 @@ export default function LoginOtpPage() {
 					<Button
 						radius='sm'
 						className={`font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${continueButtonColor}`}
-						isDisabled={!phone.length}
+						disabled={!phone.length}
 						onPress={handleSubmit}
 					>
 						Continue

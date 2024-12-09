@@ -52,7 +52,7 @@ export default function WelcomeLoading() {
 				</div>
 
 				<div className=''>
-					<div className='w-[264px] h-[289px]'>
+					<div className='w-[264px] h-[289px] z-10'>
 						<Image
 							src={'/images/welcome-loading-player.svg'}
 							className='object-contain w-full h-full'
