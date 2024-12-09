@@ -30,6 +30,10 @@ export default function RootLayout({
 					href='https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'
 					rel='stylesheet'
 				/>
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui'
+				/>
 			</head>
 			<body>
 				<NextUIProvider>

@@ -48,7 +48,7 @@ export default function LoginOtpPage() {
 					<Button
 						radius='sm'
 						className={`w-full mb-4 mt-1 font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${configUI.color}`}
-						disabled={!isFullFill(otp)}
+						isDisabled={!isFullFill(otp)}
 						onPress={handleVerifyOtp}
 					>
 						{configUI.buttonText}

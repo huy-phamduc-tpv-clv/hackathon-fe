@@ -69,7 +69,7 @@ export default function LoginOtpPage() {
 					<Button
 						radius='sm'
 						className={`font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] ${continueButtonColor}`}
-						disabled={!phone.length}
+						isDisabled={!phone.length}
 						onPress={handleSubmit}
 					>
 						Continue
