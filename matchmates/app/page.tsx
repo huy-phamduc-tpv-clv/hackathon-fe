@@ -1,7 +1,7 @@
 'use client';
 
 import { Background } from '../components/Background';
-import WithAuth from '../components/WithAuth';
+import WithAuth from '../hoc/WithAuth';
 import { Button } from '@nextui-org/button';
 import useToken from '../store/useToken';
 import { useRouter } from 'next/navigation';

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import useToken from '@/store/useToken';
 import { useRouter } from 'next/navigation';
-import Loading from './Loading';
+import { Background } from './Background';
 
 const MobileChecking = ({ children }: { children: React.ReactNode }) => {
 	const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -44,7 +44,7 @@ const MobileChecking = ({ children }: { children: React.ReactNode }) => {
 	}, [isMobile, hasToken, router]);
 
 	if (isMobile === null) {
-		return <Loading />;
+		return <Background />;
 	}
 
 	if (!isMobile) {

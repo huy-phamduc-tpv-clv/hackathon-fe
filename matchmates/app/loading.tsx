@@ -1,5 +1,5 @@
-import Loading from '../components/Loading';
+import { Background } from '@/components/Background';
 
 export default function LoadingRoot() {
-	return <Loading />;
+	return <Background></Background>;
 }

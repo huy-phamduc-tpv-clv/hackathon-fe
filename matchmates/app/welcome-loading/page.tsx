@@ -52,13 +52,12 @@ export default function WelcomeLoading() {
 				</div>
 
 				<div className=''>
-					<div className='w-[116px] h-[141px]'>
-						{/** @TODO replace image */}
+					<div className='w-[264px] h-[289px]'>
 						<Image
-							src={'/images/loading-character.png'}
+							src={'/images/welcome-loading-player.svg'}
 							className='object-contain w-full h-full'
-							width={116}
-							height={141}
+							width={264}
+							height={289}
 							alt=''
 						/>
 					</div>

@@ -2,7 +2,7 @@
 
 import { CLTLogo } from '../icons/clt-logo';
 import { Background } from './Background';
-import Image from 'next/image';
+import { LoadingPlayer } from '@/images/loading-player';
 
 export default function Loading() {
 	return (
@@ -30,24 +30,8 @@ export default function Loading() {
 				</div>
 
 				<div className='flex-grow overflow-hidden'>
-					<div className='w-[116px] h-[141px]'>
-						<Image
-							src={'/images/loading-character.png'}
-							className='object-contain w-full h-full'
-							width={116}
-							height={141}
-							alt=''
-						/>
-					</div>
-
-					<div className='w-[316px] h-[139px] relative -top-[125px] left-[55px]'>
-						<Image
-							src={'/images/wave-green.png'}
-							className='object-contain w-full h-full'
-							width={316}
-							height={139}
-							alt=''
-						/>
+					<div className=''>
+						<LoadingPlayer />
 					</div>
 				</div>
 
