@@ -11,8 +11,8 @@ import useToken from '../../store/useToken';
 
 const isFullFill = (otpInputted: string) => otpInputted.length === 4;
 const addStars = (str: string) => {
-	const firstTwoChars = (str || '00').slice(-2);
-	return '******** ' + firstTwoChars;
+	const lastChars = (str || '00').slice(-2);
+	return '******** ' + lastChars;
 };
 
 export default function LoginOtpPage() {

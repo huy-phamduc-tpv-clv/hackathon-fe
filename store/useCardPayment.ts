@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-interface Card {
+export interface Card {
 	id: string;
 	type: string;
 	card_number: string;
-	Expiration: string;
+	expiration: string;
 	cvv: string;
 }
 
@@ -12,7 +12,8 @@ interface CardPaymentState {
 	cards: Card[];
 	addCard: (newCard: Card) => void;
 	removeCard: (id: string) => void;
-	getCards: (id: string) => Card | undefined;
+	getCard: (id: string) => Card | undefined;
+	getCards: () => Card[];
 }
 
 const useCardPayment = create<CardPaymentState>((set, get) => ({
@@ -23,7 +24,8 @@ const useCardPayment = create<CardPaymentState>((set, get) => ({
 	removeCard: id => {
 		return set({ cards: [...get().cards.filter(item => item.id !== id)] });
 	},
-	getCards: id => get().cards.find(item => (item.id = id)),
+	getCard: id => get().cards.find(item => (item.id = id)),
+	getCards: () => get().cards,
 }));
 
 export default useCardPayment;

@@ -11,10 +11,13 @@ import useToken from '../../store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
 import { NavigationBar } from '@/components/NavigationBar';
+import useCardPayment from '../../store/useCardPayment';
+import { PaymentCard } from '@/components/PaymentCard';
 
 function Profile() {
 	const router = useRouter();
 	const { phone } = useToken();
+	const { getCards } = useCardPayment();
 
 	const handleGoBack = () => {
 		router.push('select-role');
@@ -99,16 +102,23 @@ function Profile() {
 						/>
 					</div>
 
-					<div className='px-3 flex flex-col mt-2'>
+					<div className='px-3 flex flex-col mt-2 mb-4'>
 						<h3 className='pt-3 font-medium text-xl'>
 							Payment List
 						</h3>
 					</div>
 
-					<div className='px-3'>
+					<div className='px-3 flex flex-col gap-3 '>
+						{getCards().map(item => (
+							<PaymentCard
+								key={item.id}
+								card={item}
+							/>
+						))}
+
 						<Button
 							radius='sm'
-							className='w-full mt-4 font-inter text-regular text-secondary-green font-normal text-opacity-80 bg-white h-[48px] text-[16px]'
+							className='w-full font-inter text-regular text-secondary-green font-normal text-opacity-80 bg-[#FFFFFFE5] h-[48px] text-[16px]'
 							onPress={() => router.push('/add-payment-card')}
 						>
 							<AddPaymentCard />
