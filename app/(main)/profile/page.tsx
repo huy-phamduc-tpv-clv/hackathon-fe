@@ -1,9 +1,10 @@
 'use client';
 
+import WithAuth from '../../../hoc/WithAuth';
 import useToken from '../../../store/useToken';
 import { Button } from '@nextui-org/button';
 
-export default function Profile() {
+function Profile() {
 	const { removeToken } = useToken();
 
 	const handleLogout = () => {
@@ -23,3 +24,5 @@ export default function Profile() {
 		</>
 	);
 }
+
+export default WithAuth(Profile);

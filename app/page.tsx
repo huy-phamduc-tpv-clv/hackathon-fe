@@ -4,8 +4,9 @@ import { useRouter } from 'next/navigation';
 import { Background } from '../components/Background';
 import useToken from '../store/useToken';
 import { useEffect } from 'react';
+import WithAuth from '../hoc/WithAuth';
 
-export default function Dashboard() {
+function Dashboard() {
 	const { hasToken } = useToken();
 	const router = useRouter();
 
@@ -19,3 +20,5 @@ export default function Dashboard() {
 
 	return <Background></Background>;
 }
+
+export default WithAuth(Dashboard);

@@ -32,8 +32,8 @@ export default function LoginOtpPage() {
 
 	return (
 		<Background>
-			<div className='pb-16 pt-40 flex flex-col justify-between w-full min-h-screen items-center px-4'>
-				<div>
+			<div className='flex flex-col w-full min-h-screen px-4 justify-center'>
+				<div className='flex-grow flex flex-col justify-center'>
 					<h2 className='font-medium text-xl text-center'>
 						Enter the 4-digit code sent to your {`******** `}56
 					</h2>
@@ -66,7 +66,7 @@ export default function LoginOtpPage() {
 					</Button>
 				</div>
 
-				<div className='w-full flex justify-between'>
+				<div className='w-full flex justify-between mb-16'>
 					<Button
 						size='sm'
 						radius='sm'

@@ -35,8 +35,8 @@ export default function WelcomeLoading() {
 
 	return (
 		<Background>
-			<div className='min-h-screen max-h-screen flex flex-col items-center'>
-				<div className='min-h-full flex flex-col justify-center mb-10 mt-44'>
+			<div className='min-h-screen flex flex-col items-center justify-center pb-10'>
+				<div className='flex flex-col justify-center items-center mb-10'>
 					<h1 className='text-[40px] font-medium text-center h-14'>
 						Welcome to
 					</h1>

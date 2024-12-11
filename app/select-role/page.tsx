@@ -27,7 +27,7 @@ export default function SelectRolePage() {
 
 	return (
 		<Background>
-			<div className='pb-16 pt-36 flex flex-col justify-between w-full min-h-screen items-center px-4'>
+			<div className='pb-10 flex flex-col justify-center items-center w-full min-h-screen px-4'>
 				<div>
 					<h2 className='font-medium text-xl text-center'>
 						Select your prefer role
@@ -35,7 +35,7 @@ export default function SelectRolePage() {
 				</div>
 
 				<div
-					className='grid grid-cols-2 grid-rows-2 gap-[16px] -mt-[90px]'
+					className='grid grid-cols-2 grid-rows-2 gap-[16px] mt-4'
 					style={{
 						gridTemplateColumns: '156px 156px',
 						gridTemplateRows: '191px 191px',
@@ -95,7 +95,7 @@ export default function SelectRolePage() {
 					/>
 				</div>
 
-				<div className='w-full flex justify-between'>
+				<div className='w-full flex justify-between mt-28'>
 					<Button
 						size='sm'
 						radius='sm'
