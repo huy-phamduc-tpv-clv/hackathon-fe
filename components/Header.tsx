@@ -9,7 +9,7 @@ export const Header = ({
 	back?: () => void;
 }) => {
 	return (
-		<header className='bg-[#FFFFFF] h-[60px] z-10 w-full flex justify-between items-center px-4'>
+		<header className='bg-[#FFFFFF] h-[60px] z-50 w-full flex justify-between items-center px-4 fixed top-0'>
 			<div
 				className='w-[48px] h-[48px] flex-center'
 				onClick={() => back && back()}
