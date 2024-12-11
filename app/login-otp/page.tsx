@@ -10,11 +10,16 @@ import { useRouter } from 'next/navigation';
 import useToken from '../../store/useToken';
 
 const isFullFill = (otpInputted: string) => otpInputted.length === 4;
+const addStars = (str: string) => {
+	const firstTwoChars = (str || '00').slice(-2);
+	return '******** ' + firstTwoChars;
+};
 
 export default function LoginOtpPage() {
 	const [otp, setOtp] = useState('');
 	const router = useRouter();
 	const { setToken } = useToken();
+	const { phone } = useToken();
 
 	const configUI = !isFullFill(otp)
 		? { color: 'bg-neutral-300', buttonText: 'Continue' }
@@ -35,7 +40,8 @@ export default function LoginOtpPage() {
 			<div className='flex flex-col w-full min-h-screen px-4 justify-center'>
 				<div className='flex-grow flex flex-col justify-center'>
 					<h2 className='font-medium text-xl text-center'>
-						Enter the 4-digit code sent to your {`******** `}56
+						Enter the 4-digit code sent to your{' '}
+						{`${addStars(phone)}`}
 					</h2>
 
 					<InputOtp

@@ -10,7 +10,7 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: {
+			'colors': {
 				primary: {
 					black: '#1F2128',
 				},
@@ -36,7 +36,7 @@ export default {
 					50: '#F9F9F9',
 				},
 			},
-			fontSize: {
+			'fontSize': {
 				'3xl': '2.25rem',
 				'2xl': '1.5rem',
 				'xl': '1.375rem',
@@ -46,16 +46,19 @@ export default {
 				'3m': '0.875rem',
 				'2m': '0.75rem',
 			},
-			fontWeight: {
+			'fontWeight': {
 				regular: '400',
 				medium: '500',
 				extrabold: '600',
 				heavy: '700',
 			},
-			fontFamily: {
+			'fontFamily': {
 				bfo: ['Bagel Fat One', 'system-ui'],
 				inter: ['inter', 'sans-serif'],
 			},
+			boxShadow: {
+				'custom-1': '-2px 0px 11px 0px rgba(0, 0, 0, 0.2)',
+			  },
 		},
 	},
 	darkMode: 'class',

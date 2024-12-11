@@ -39,7 +39,7 @@ export const RoleCard = ({
 	return (
 		<div
 			onClick={onClick}
-			className={`bg-[#A6E8184D] z-10 rounded-[14px] flex justify-center items-center flex-col transition-all ${
+			className={`bg-[#A6E8184D] z-10 rounded-[14px] flex-center flex-col transition-all ${
 				isActive
 					? 'bg-[#A6E8184D] border-[5px] border-secondary-green'
 					: 'bg-[#FFFFFF]'

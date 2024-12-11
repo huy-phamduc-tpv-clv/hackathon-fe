@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import '../../styles/globals.css';
 import { NavigationBar } from '../../components/NavigationBar';
-import { Background } from '../../components/Background';
 
 export const metadata: Metadata = {
 	title: 'Match Mates',
@@ -14,12 +13,10 @@ export default function Layout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<Background>
-			<div className='min-h-screen flex flex-col'>
-				<main className='flex-1'>{children}</main>
+		<div className='min-h-screen flex flex-col'>
+			<main className='flex-1'>{children}</main>
 
-				<NavigationBar />
-			</div>
-		</Background>
+			<NavigationBar />
+		</div>
 	);
 }

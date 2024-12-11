@@ -10,9 +10,11 @@ import { useRouter } from 'next/navigation';
 import { Background } from '@/components/Background';
 import { CLTLogo } from '@/icons/clt-logo';
 import { SeparateText } from '@/components/Separate';
+import useToken from '../../store/useToken';
 
 export default function LoginOtpPage() {
-	const [phone, setPhone] = useState('');
+	const { setPhone: setGlobalPhone, phone: globalPhone } = useToken();
+	const [phone, setPhone] = useState(globalPhone);
 	const router = useRouter();
 
 	const continueButtonColor = !phone.length
@@ -33,6 +35,7 @@ export default function LoginOtpPage() {
 	const handleSubmit = () => {
 		if (!phone.length) return;
 
+		setGlobalPhone(phone);
 		router.push('/login-otp');
 	};
 
@@ -92,7 +95,7 @@ export default function LoginOtpPage() {
 						<GoogleIcon /> Continue with Google
 					</Button>
 				</div>
-				<div className='flex justify-center items-center px-4 gap-4 pt-16 pb-8'>
+				<div className='flex-center px-4 gap-4 pt-16 pb-8'>
 					<div className='w-[69px] h-[20.5px] relative'>
 						<CLTLogo />
 					</div>
