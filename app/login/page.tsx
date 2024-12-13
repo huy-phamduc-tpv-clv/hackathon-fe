@@ -55,6 +55,7 @@ export default function LoginOtpPage() {
 						src={'/images/login-content.png'}
 						width={285}
 						height={237}
+						priority
 					/>
 				</div>
 				<div className='w-full flex flex-col px-4 gap-3'>

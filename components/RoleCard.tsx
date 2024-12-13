@@ -57,6 +57,7 @@ export const RoleCard = ({
 					width={120}
 					height={100}
 					alt=''
+					priority
 				/>
 			</div>
 		</div>

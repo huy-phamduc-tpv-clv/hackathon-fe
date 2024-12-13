@@ -50,6 +50,7 @@ export const FieldOwnerProfile = () => {
 									width={144}
 									height={144}
 									alt=''
+									priority
 								/>
 
 								<div className='absolute w-[48px] h-[48px] bg-neutral-50 right-0 bottom-0 rounded-tl-xl flex-center'>

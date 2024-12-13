@@ -59,6 +59,7 @@ export default function WelcomeLoading() {
 							width={264}
 							height={289}
 							alt=''
+							priority
 						/>
 					</div>
 				</div>

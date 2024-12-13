@@ -16,6 +16,7 @@ export const PaymentCard = ({ card }: { card: Card }) => {
 					alt=''
 					width={49}
 					height={39}
+					priority
 				/>
 			</div>
 			<span className='font-semibold flex-grow'>
