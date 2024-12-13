@@ -12,15 +12,16 @@ import {
 	DateInput,
 } from '@nextui-org/react';
 import React from 'react';
-import { CalendarDate, parseDate } from '@internationalized/date';
+import { useRouter } from 'next/navigation';
 
 export default function TimeTable() {
+	const router = useRouter();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [scrollBehavior] = React.useState('inside' as const);
 
 	return (
 		<div className=''>
-			<Header back={() => {}}></Header>
+			<Header back={() => router.push('/profile')}></Header>
 			<div
 				className='mt-[60px]'
 				style={{ minHeight: 'calc(100vh )' }}
@@ -139,11 +140,7 @@ export default function TimeTable() {
 							<ModalBody>
 								<DateInput
 									isRequired
-									defaultValue={parseDate('2024-04')}
 									label={'Birth date'}
-									placeholderValue={
-										new CalendarDate(1995, 11, 6)
-									}
 								/>
 							</ModalBody>
 							<ModalFooter></ModalFooter>

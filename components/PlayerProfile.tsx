@@ -155,7 +155,7 @@ export const PlayerProfile = () => {
 							</div>
 						</div>
 
-						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+						{/* <div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
 							<div className='ml-6'>Player type</div>
 							<div className='mr-10'>
 								<GreenLeft />
@@ -181,7 +181,7 @@ export const PlayerProfile = () => {
 							<div className='mr-10'>
 								<GreenLeft />
 							</div>
-						</div>
+						</div> */}
 					</div>
 
 					<div className='h-[100px]'></div>
