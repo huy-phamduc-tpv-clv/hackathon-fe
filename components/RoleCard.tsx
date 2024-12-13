@@ -30,11 +30,13 @@ export const RoleCard = ({
 	image,
 	title,
 	onClick,
+	disable = false,
 }: {
 	isActive: boolean;
 	image: string;
 	title: string;
 	onClick: () => void;
+	disable?: boolean;
 }) => {
 	return (
 		<div
@@ -43,7 +45,7 @@ export const RoleCard = ({
 				isActive
 					? 'bg-[#A6E8184D] border-[5px] border-secondary-green'
 					: 'bg-[#FFFFFF]'
-			}`}
+			} ${disable ? 'pointer-events-none' : ''}`}
 		>
 			<CustomCheckbox
 				title={title}

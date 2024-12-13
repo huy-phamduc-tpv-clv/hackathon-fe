@@ -7,9 +7,13 @@ import { ArrowRightIcon } from '../../icons/arrow-right';
 import { ArrowLeftIcon } from '../../icons/arrow-left';
 import { useRouter } from 'next/navigation';
 import { RoleCard } from '@/components/RoleCard';
+import useToken from '../../store/useToken';
+import { ROLE } from '../../constants/role';
 
 export default function SelectRolePage() {
 	const router = useRouter();
+	const { setUserType: setUser } = useToken();
+
 	const [selectRole, setSelectRole] = useState({
 		player: false,
 		field_owner: false,
@@ -19,9 +23,14 @@ export default function SelectRolePage() {
 
 	const isSelectedRole = Object.values(selectRole).some(Boolean);
 
-	const handleSelectRole = () => {
+	const handleSelectRole = async () => {
 		if (!isSelectedRole) return;
 
+		const payload = {
+			userType: selectRole.player ? ROLE.PLAYER : ROLE.FIELD_OWNER,
+		};
+
+		setUser(payload.userType);
 		router.push('/profile');
 	};
 
@@ -47,7 +56,7 @@ export default function SelectRolePage() {
 						title='Player'
 						onClick={() =>
 							setSelectRole({
-								player: !selectRole.player,
+								player: true,
 								fan: false,
 								field_owner: false,
 								referee: false,
@@ -61,13 +70,13 @@ export default function SelectRolePage() {
 						onClick={() =>
 							setSelectRole({
 								player: false,
-								field_owner: !selectRole.field_owner,
+								field_owner: true,
 								referee: false,
 								fan: false,
 							})
 						}
 					/>
-					<RoleCard
+					{/* <RoleCard
 						isActive={selectRole.referee}
 						image='/images/role-referee.svg'
 						title='Referee'
@@ -79,6 +88,7 @@ export default function SelectRolePage() {
 								fan: false,
 							})
 						}
+						disable
 					/>
 					<RoleCard
 						isActive={selectRole.fan}
@@ -92,7 +102,8 @@ export default function SelectRolePage() {
 								fan: !selectRole.fan,
 							})
 						}
-					/>
+						disable
+					/> */}
 				</div>
 
 				<div className='w-full flex justify-between mt-28'>
