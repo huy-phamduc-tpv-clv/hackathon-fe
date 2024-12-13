@@ -14,6 +14,26 @@ interface TokenState {
 	setUserType: (newUser: string) => void;
 	isPlayer: boolean;
 	isFieldOwner: boolean;
+
+	// player time tables
+	playerTimeTables: {
+		dateOfWeek: string;
+		startHour: string;
+		endHour: string;
+	}[];
+
+	setPlayerTimeTables: (
+		newPlayerTimeTables: {
+			dateOfWeek: string;
+			startHour: string;
+			endHour: string;
+		}[],
+	) => void;
+	getPlayerTimeTables: () => {
+		dateOfWeek: string;
+		startHour: string;
+		endHour: string;
+	}[];
 }
 
 const useToken = create<TokenState>()(
@@ -36,6 +56,12 @@ const useToken = create<TokenState>()(
 					}),
 				isPlayer: false,
 				isFieldOwner: false,
+
+				// player time tables
+				playerTimeTables: [],
+				setPlayerTimeTables: newPlayerTimeTables =>
+					set({ playerTimeTables: newPlayerTimeTables }),
+				getPlayerTimeTables: () => get().playerTimeTables,
 			}),
 			{ name: 'auth-token' },
 		),
