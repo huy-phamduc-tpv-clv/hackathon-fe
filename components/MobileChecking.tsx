@@ -10,6 +10,7 @@ import {
 	DropdownMenu,
 	DropdownItem,
 	Button,
+	SharedSelection,
 } from '@nextui-org/react';
 
 const MobileChecking = ({ children }: { children: React.ReactNode }) => {
@@ -24,6 +25,15 @@ const MobileChecking = ({ children }: { children: React.ReactNode }) => {
 		'Scan here to find and start your team on your mobile.',
 	);
 	const [selectedKeys, setSelectedKeys] = React.useState(new Set(['EN']));
+	const handleSelectionChange = (keys: SharedSelection) => {
+		if (keys !== 'all') {
+			const newSelectedKeys = new Set<string>();
+			if (keys.currentKey) {
+				newSelectedKeys.add(keys.currentKey);
+			}
+			setSelectedKeys(newSelectedKeys);
+		}
+	};
 	const selectedValue = React.useMemo(
 		() => Array.from(selectedKeys).join(', ').replace(/_/g, ''),
 		[selectedKeys],
@@ -143,7 +153,7 @@ const MobileChecking = ({ children }: { children: React.ReactNode }) => {
 								selectedKeys={selectedKeys}
 								selectionMode='single'
 								// variant="flat"
-								onSelectionChange={setSelectedKeys}
+								onSelectionChange={handleSelectionChange}
 							>
 								<DropdownItem key='VN'>VN</DropdownItem>
 								<DropdownItem key='KR'>KR</DropdownItem>
