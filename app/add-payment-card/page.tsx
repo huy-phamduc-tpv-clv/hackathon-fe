@@ -37,6 +37,44 @@ function Profile() {
 		router.push('/profile');
 	};
 
+	const handleExpirationChange = (value: string) => {
+		const numericValue = value.replace(/\D/g, '');
+
+		if (numericValue.length > 4) return;
+
+		let formattedValue = numericValue;
+
+		if (numericValue.length >= 3) {
+			formattedValue = `${numericValue.slice(0, 2)}/${numericValue.slice(
+				2,
+				4,
+			)}`;
+		}
+
+		if (
+			numericValue.length >= 2 &&
+			parseInt(numericValue.slice(0, 2)) > 12
+		) {
+			return;
+		}
+
+		setCard(prevState => ({
+			...prevState,
+			expiration: formattedValue,
+		}));
+	};
+
+	const handleCardNumberChange = (value: string) => {
+		const numericValue = value.replace(/\D/g, '');
+
+		if (numericValue.length <= 16) {
+			setCard(prevState => ({
+				...prevState,
+				card_number: numericValue,
+			}));
+		}
+	};
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
@@ -76,13 +114,9 @@ function Profile() {
 								</span>
 							}
 							value={card.card_number}
-							onValueChange={value =>
-								setCard(preState => ({
-									...preState,
-									card_number: value,
-								}))
-							}
+							onValueChange={handleCardNumberChange}
 							maxLength={16}
+							type='number'
 						/>
 						<div className='flex gap-3'>
 							<Input
@@ -94,13 +128,8 @@ function Profile() {
 									</span>
 								}
 								value={card.expiration}
-								onValueChange={value =>
-									setCard(preState => ({
-										...preState,
-										expiration: value,
-									}))
-								}
-								maxLength={4}
+								onValueChange={handleExpirationChange}
+								maxLength={5}
 							/>
 							<Input
 								size='md'

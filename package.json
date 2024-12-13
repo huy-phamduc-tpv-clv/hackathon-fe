@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@internationalized/date": "^3.6.0",
     "@material/web": "^2.2.0",
     "@nextui-org/button": "^2.2.3",
     "@nextui-org/input": "^2.4.3",

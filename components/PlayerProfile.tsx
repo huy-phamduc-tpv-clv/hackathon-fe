@@ -13,6 +13,7 @@ import { AddPaymentCard } from '@/icons/add-payment-card';
 import { NavigationBar } from '@/components/NavigationBar';
 import useCardPayment from '../store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
+import { GreenLeft } from '../icons/green-left';
 
 export const PlayerProfile = () => {
 	const router = useRouter();
@@ -84,7 +85,6 @@ export const PlayerProfile = () => {
 									Age
 								</span>
 							}
-							isRequired
 						/>
 						<Input
 							value={phone}
@@ -143,9 +143,47 @@ export const PlayerProfile = () => {
 						</h3>
 					</div>
 
-					<div className='mt-3 px-3'>
-						<Button className='w-full h-[48px]' >Timetable</Button>
+					<div className='mt-3 px-3 gap-2 flex flex-col'>
+						<div
+							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
+							onClick={() => router.push('time-table')}
+						>
+							<div className='ml-6'>Timetable</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Player type</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Game type</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Location</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Rate/Price</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
 					</div>
+
+					<div className='h-[100px]'></div>
 				</Background>
 			</div>
 
