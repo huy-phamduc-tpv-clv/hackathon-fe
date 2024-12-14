@@ -11,13 +11,16 @@ import { MapSimpleMarker } from '../../icons/map-simple-marker';
 import { useEffect } from 'react';
 import useMatchList, { Match } from '@/store/useMatchList';
 import TinderCard from 'react-tinder-card';
+import { Button } from '@nextui-org/button';
+import { useRouter } from 'next/navigation';
 
 function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export default function MatchNow() {
-  const { getMatchList, setMatchList } = useMatchList();
+  const { getMatchList, setMatchList, swiftRight } = useMatchList();
+  const router = useRouter();
 
   useEffect(() => {
     // call api to get Match List
@@ -59,6 +62,7 @@ export default function MatchNow() {
   };
   const handleJoin = (match: Match) => {
     console.log('join', match);
+    swiftRight(match);
   };
 
   return (
@@ -167,7 +171,7 @@ export default function MatchNow() {
 
       <div className="px-5 text-[#FFFFFFE5]">
         <p className="text-[#FFFFFFE5] font-[500] text-[16px]">Group Stage - OPUS Terminal versus OPUS CNTR</p>
-        <p className="text-[#FFFFFFE5] font-[300] text-[12px] flex mt-3 gap-2">
+        <p className="text-[#FFFFFFE5] font-[300] text-[12px] flex mt-3 gap-3">
           <CalendarIcon />
           12/12/2024 - 18:00 - 20:00
         </p>
@@ -176,7 +180,7 @@ export default function MatchNow() {
           San bong K334 - Pitch #1
         </p>
         <div className="flex text-[#FFFFFFE5] font-[300] text-[12px] gap-3 mt-1">
-          <p className="flex gap-1 items-center">
+          <p className="flex gap-3 items-center">
             <PersonIcon />
             5-5
           </p>
@@ -190,14 +194,14 @@ export default function MatchNow() {
           </p>
         </div>
 
-        {/* <div className="flex mt-6 gap-4">
-          <Button className="w-full bg-[#FFFFFFE5] rounded-[8px]" onPress={handleSkip}>
-            Skip
+        <div className="flex mt-6 gap-4">
+          <Button
+            className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]"
+            onPress={() => router.push('/my-game')}
+          >
+            Check Out Matched Profiles
           </Button>
-          <Button className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]" onPress={handleJoin}>
-            Join Now
-          </Button>
-        </div> */}
+        </div>
       </div>
 
       <PlayerNavigationBar />
