@@ -10,10 +10,10 @@ import { Input } from '@nextui-org/input';
 import useToken from '../store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import { NavigationBar } from '@/components/NavigationBar';
 import useCardPayment from '../store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
 import { GreenLeft } from '../icons/green-left';
+import { PlayerNavigationBar } from './PlayerNavigationBar';
 
 export const PlayerProfile = () => {
 	const router = useRouter();
@@ -155,14 +155,17 @@ export const PlayerProfile = () => {
 							</div>
 						</div>
 
-						{/* <div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+						<div
+							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
+							onClick={() => router.push('player-type')}
+						>
 							<div className='ml-6'>Player type</div>
 							<div className='mr-10'>
 								<GreenLeft />
 							</div>
 						</div>
 
-						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+						{/* <div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
 							<div className='ml-6'>Game type</div>
 							<div className='mr-10'>
 								<GreenLeft />
@@ -188,7 +191,7 @@ export const PlayerProfile = () => {
 				</Background>
 			</div>
 
-			<NavigationBar />
+			<PlayerNavigationBar />
 		</div>
 	);
 };

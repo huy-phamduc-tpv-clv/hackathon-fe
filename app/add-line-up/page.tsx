@@ -1,65 +1,36 @@
 'use client';
 
-import WithAuth from '../hoc/WithAuth';
+import WithAuth from '../../hoc/WithAuth';
 import { Header } from '@/components/Header';
 import { useRouter } from 'next/navigation';
-import { Background } from './Background';
+import { Background } from '@/components/Background';
 import Image from 'next/image';
-import { Pen } from '../icons/pen';
+import { Pen } from '@/icons/pen';
 import { Input } from '@nextui-org/input';
+import useToken from '@/store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
 import { NavigationBar } from '@/components/NavigationBar';
-import useCardPayment from '../store/useCardPayment';
+import useCardPayment from '@/store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
-import useCardProfileOwner, { ProfileOwner } from '@/store/useCardProfileOwner';
-import { useState } from 'react';
-import useToken from '@/store/useToken';
+import { GreenLeft } from '@/icons/green-left';
 
-export const FieldOwnerProfile = () => {
-	const { phone } = useToken();
-
+const PlayerProfile = () => {
 	const router = useRouter();
+	const { phone } = useToken();
 	const { getCards } = useCardPayment();
 
 	const handleGoBack = () => {
 		router.push('select-role');
 	};
-	const [profileOwner, setProfileOwner] = useState<ProfileOwner>({
-		owner_name: '',
-		id: '',
-		type: '',
-		age: '',
-		phone_number: phone,
-		email: '',
-	});
-	const { updateProfileOwner } = useCardProfileOwner();
-	const handleSaveCard = () => {
-		if (!isInputted(profileOwner)) return;
 
-		updateProfileOwner(profileOwner);
-
-		router.push('/fields');
-	};
-	const isInputted = (profileOwner: ProfileOwner) => {
-		return (
-			profileOwner.owner_name.length &&
-			profileOwner.phone_number.length &&
-			profileOwner.age.length
-		);
-	};
 	return (
 		<div className=''>
 			<Header back={handleGoBack}>
 				<Button
 					radius='sm'
 					color='default'
-					className={`text-white ${
-						isInputted(profileOwner)
-							? ' bg-primary-black'
-							: 'bg-neutral-300'
-					}`}
-					onPress={handleSaveCard}
+					className='text-white bg-neutral-300'
 				>
 					Save
 				</Button>
@@ -90,7 +61,13 @@ export const FieldOwnerProfile = () => {
 						</div>
 					</div>
 
-					<div className='px-3 pt-4  flex flex-col gap-3'>
+					<div
+						className='px-3 pt-4 justify-center gap-2 grid grid-cols-2 grid-rows-2 mt-4'
+						style={{
+							gridTemplateColumns: '158px 158px',
+							gridTemplateRows: '1fr 1fr',
+						}}
+					>
 						<Input
 							size='md'
 							placeholder='Please input'
@@ -98,13 +75,6 @@ export const FieldOwnerProfile = () => {
 								<span className='text-secondary-green'>
 									Name
 								</span>
-							}
-							value={profileOwner.owner_name}
-							onValueChange={value =>
-								setProfileOwner(preState => ({
-									...preState,
-									owner_name: value,
-								}))
 							}
 							isRequired
 						/>
@@ -116,15 +86,9 @@ export const FieldOwnerProfile = () => {
 									Age
 								</span>
 							}
-							value={profileOwner.age}
-							onValueChange={value =>
-								setProfileOwner(preState => ({
-									...preState,
-									age: value,
-								}))
-							}
 						/>
 						<Input
+							value={phone}
 							size='md'
 							placeholder='Please input'
 							label={
@@ -132,8 +96,6 @@ export const FieldOwnerProfile = () => {
 									Phone
 								</span>
 							}
-							value={phone}
-							disabled
 							isRequired
 						/>
 						<Input
@@ -143,13 +105,6 @@ export const FieldOwnerProfile = () => {
 								<span className='text-secondary-green'>
 									Email
 								</span>
-							}
-							value={profileOwner.email}
-							onValueChange={value =>
-								setProfileOwner(preState => ({
-									...preState,
-									email: value,
-								}))
 							}
 						/>
 					</div>
@@ -177,6 +132,62 @@ export const FieldOwnerProfile = () => {
 							Add Payment Card
 						</Button>
 					</div>
+
+					<div className='px-3 flex flex-col mt-3'>
+						<h3 className='pt-3 font-medium text-xl'>
+							Your prefer
+						</h3>
+					</div>
+					<div>
+						<h3 className='px-3 font-normal text-[14px]'>
+							Help us find you match games
+						</h3>
+					</div>
+
+					<div className='mt-3 px-3 gap-2 flex flex-col'>
+						<div
+							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
+							onClick={() => router.push('time-table')}
+						>
+							<div className='ml-6'>Timetable</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div
+							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
+							onClick={() => router.push('player-type')}
+						>
+							<div className='ml-6'>Player type</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						{/* <div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Game type</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Location</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div>
+
+						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+							<div className='ml-6'>Rate/Price</div>
+							<div className='mr-10'>
+								<GreenLeft />
+							</div>
+						</div> */}
+					</div>
+
+					<div className='h-[100px]'></div>
 				</Background>
 			</div>
 
@@ -185,4 +196,4 @@ export const FieldOwnerProfile = () => {
 	);
 };
 
-export default WithAuth(FieldOwnerProfile);
+export default WithAuth(PlayerProfile);
