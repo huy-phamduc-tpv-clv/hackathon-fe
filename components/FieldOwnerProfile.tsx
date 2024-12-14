@@ -33,16 +33,16 @@ export const FieldOwnerProfile = () => {
 		phone_number: phone,
 		email: '',
 	});
-	const { addProfileOwner } = useCardProfileOwner();
+	const { updateProfileOwner } = useCardProfileOwner();
 	const handleSaveCard = () => {
 		if (!isInputted(profileOwner)) return;
 
-		addProfileOwner(profileOwner);
+		updateProfileOwner(profileOwner);
 
-		router.push('/profile');
+		router.push('/fields');
 	};
 	const isInputted = (profileOwner: ProfileOwner) => {
-		return profileOwner.owner_name.length && profileOwner.phone_number.length;
+		return profileOwner.owner_name.length && profileOwner.phone_number.length && profileOwner.age.length;
 	};
 	return (
 		<div className=''>

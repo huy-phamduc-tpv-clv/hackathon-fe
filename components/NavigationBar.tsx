@@ -5,15 +5,27 @@ import { NavMap } from '../icons/nav-map';
 import { NavRevenue } from '../icons/nav-revenue';
 import { NavProfile } from '../icons/nav-profile';
 import { usePathname, useRouter } from 'next/navigation';
+import useToken from '@/store/useToken';
+import { ROLE } from '@/constants/role';
 
 export const NavigationBar = () => {
 	const pathname = usePathname();
 	const router = useRouter();
+	const { userType } = useToken();
 
-	const isDashboard = pathname?.startsWith('/dashboard');
+	const isDashboard = pathname?.startsWith('/dashboard') || pathname?.startsWith('/fields');
 	const isMap = pathname?.startsWith('/map');
 	const isRevenue = pathname?.startsWith('/revenue');
 	const isProfile = pathname?.startsWith('/profile');
+
+	const handleRouteDashboard = () => {
+		if (userType === ROLE.FIELD_OWNER) {
+			router.push('/fields');
+		} else {
+			router.push('/dashboard');
+		}
+
+	};
 
 	return (
 		<footer className='bg-white shadow-lg fixed bottom-0 left-0 w-full z-50 rounded-t-[24px]'>
@@ -26,7 +38,7 @@ export const NavigationBar = () => {
 			>
 				<div
 					className='flex flex-col justify-center items-center'
-					onClick={() => router.push('/dashboard')}
+					onClick={handleRouteDashboard}
 				>
 					<NavDashboard isActive={isDashboard} />
 					<p className='text-sm pt-1 font-normal text-neutral-700'>
