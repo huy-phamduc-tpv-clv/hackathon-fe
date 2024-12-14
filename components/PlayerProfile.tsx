@@ -167,7 +167,7 @@ export const PlayerProfile = () => {
 
 						<div
 							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
-							onClick={() => router.push('location')}
+							onClick={() => router.push('use-my-location')}
 						>
 							<div className='ml-6'>Location</div>
 							<div className='mr-10'>

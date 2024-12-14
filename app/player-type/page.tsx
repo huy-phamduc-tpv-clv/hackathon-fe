@@ -13,7 +13,7 @@ const PlayerType = () => {
 	const router = useRouter();
 
 	const handleGoBack = () => {
-		router.push('select-role');
+		router.push('/profile');
 	};
 
 	return (
