@@ -7,15 +7,30 @@ import { Input } from '@nextui-org/react';
 import { NavigationBar } from './NavigationBar';
 import { Search } from '@/icons/search';
 import useToken from '@/store/useToken';
+import { useEffect } from 'react';
+import axios from '@/apis/index';
 
 export const ListFields = () => {
-  const { name } = useToken();
+  const { name, usr_id } = useToken();
+
   const handleGoBack = () => {
     router.push('/profile');
   };
   const handleAddfield = () => {
     router.push('/add-field');
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('field', { headers: { USERID: usr_id } });
+        console.log(res.data);
+      } catch (error) {
+        console.error('Error occurred:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const router = useRouter();
   return (
     <div className="">

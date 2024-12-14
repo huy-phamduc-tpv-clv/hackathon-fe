@@ -18,13 +18,17 @@ import useToken from '@/store/useToken';
 import axios from '@/apis/index';
 
 export const FieldOwnerProfile = () => {
-  const { phone } = useToken();
+  const { setUsrId, setAge, setEmail, setUserType, setName, phone, removeToken } = useToken();
 
   const router = useRouter();
   const { getCards } = useCardPayment();
 
   const handleGoBack = () => {
     router.push('select-role');
+  };
+  const handleLogout = () => {
+    removeToken();
+    router.push('/');
   };
   const [profileOwner, setProfileOwner] = useState<ProfileOwner>({
     name: '',
@@ -34,7 +38,6 @@ export const FieldOwnerProfile = () => {
     phone_number: phone,
     email: '',
   });
-  const { setUsrId, setAge, setEmail, setUserType, setName } = useToken();
   const { updateProfileOwner } = useCardProfileOwner();
   const handleSaveCard = async () => {
     if (!isInputted(profileOwner)) return;
@@ -153,6 +156,15 @@ export const FieldOwnerProfile = () => {
             >
               <AddPaymentCard />
               Add Payment Card
+            </Button>
+          </div>
+          <div className="px-3 flex flex-col gap-3 ">
+            <Button
+              radius="sm"
+              className={`w-full mb-4 mt-1 font-inter text-regular text-white text-opacity-80 h-[48px] text-[16px] bg-black`}
+              onPress={handleLogout}
+            >
+              Logout
             </Button>
           </div>
         </Background>

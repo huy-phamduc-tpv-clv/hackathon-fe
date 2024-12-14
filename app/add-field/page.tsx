@@ -10,8 +10,11 @@ import { useEffect, useState } from 'react';
 import { v4 as uid } from 'uuid';
 import { Checkbox, CheckboxGroup, Select, SelectItem } from '@nextui-org/react';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import useField, { Field } from '@/store/useField';
+import { Field } from '@/store/useField';
 import { city, districts, wards } from '../datas/data-common';
+
+import axios from '@/apis/index';
+import useToken from '@/store/useToken';
 
 const isInputted = (field: Field) => {
   return field.field_name.length && field.city.length && field.ward.length && field.district.length;
@@ -19,6 +22,7 @@ const isInputted = (field: Field) => {
 
 function Profile() {
   const router = useRouter();
+  const { usr_id } = useToken();
   const [isCheckBoxAllTrue, setIsCheckBoxAllTrue] = useState<boolean>(false);
   const [districtFake, setDistrictFake] = useState<{ key: string; label: string }[]>([]);
   const [wardFake, setWardFake] = useState<{ key: string; label: string }[]>([]);
@@ -37,13 +41,12 @@ function Profile() {
   const loc_citys = city;
   const loc_districts = districts;
   const loc_wards = wards;
-  const { addField } = useField();
 
   const checkboxItems = [
-    { value: 'wifi', label: 'Wifi' },
-    { value: 'food', label: 'Food' },
-    { value: 'rest-room', label: 'Restroom' },
-    { value: 'car-park', label: 'Car park' },
+    { value: 'WIFI', label: 'Wifi' },
+    { value: 'FOOD', label: 'Food' },
+    { value: 'REST_ROOM', label: 'Restroom' },
+    { value: 'CAR_PARK', label: 'Car park' },
   ];
 
   const handleGoBack = () => {
@@ -101,13 +104,34 @@ function Profile() {
     }));
   };
 
-  const handleSaveField = () => {
-    console.log(field);
+  const handleSaveField = async () => {
     if (!isInputted(field)) return;
 
-    addField(field);
-
-    router.push('/fields');
+    try {
+      console.log({
+        ...field,
+        fieldName: field.field_name,
+        address: field.address_detail,
+        service: field.services,
+      });
+      await axios.post(
+        'field',
+        {
+          ...field,
+          fieldName: field.field_name,
+          address: field.address_detail,
+          service: field.services,
+        },
+        {
+          headers: {
+            USERID: usr_id,
+          },
+        },
+      );
+      router.push('/fields');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

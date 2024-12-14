@@ -89,7 +89,6 @@ const useToken = create<TokenState>()(
 				isPlayer: false,
 				isFieldOwner: false,
 				
-
 				name: '',
 				setName: newName => set({ name: newName }),
 				getName: () => get().name,

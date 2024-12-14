@@ -29,7 +29,7 @@ export const NavigationBar = () => {
   return (
     <footer className="bg-white shadow-lg fixed bottom-0 left-0 w-full z-50 rounded-t-[24px]">
       <div
-        className="h-[100px] w-full rounded-t-[24px] grid grid-cols-4 grid-rows-1"
+        className="h-[100px] w-full rounded-t-[24px] grid grid-cols-5 grid-rows-1"
         style={{
           gridTemplateColumns: '1fr 1fr 1fr 1fr',
           gridTemplateRows: '1fr',
