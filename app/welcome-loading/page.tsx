@@ -32,13 +32,13 @@ export default function WelcomeLoading() {
         if (isFieldOwner) {
           router.push('/fields');
         } else if (isPlayer) {
-          router.push('/select-role');
+          router.push('/profile');
         } else {
           router.push('/select-role');
         }
       }, 1000);
     }
-  }, [progress, router]);
+  }, [isFieldOwner, isPlayer, progress, router]);
 
   return (
     <Background>
