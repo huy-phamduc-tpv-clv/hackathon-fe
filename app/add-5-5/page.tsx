@@ -18,27 +18,27 @@ const SelectGameType = () => {
   const [positions, setPositions] = useState([
     {
       position: POSITION.GK,
-      css: 'top-[50px]',
+      css: 'bottom-[50px]',
       selected: false,
     },
     {
       position: POSITION.FIX,
-      css: 'top-[200px]',
+      css: 'bottom-[200px]',
       selected: false,
     },
     {
       position: POSITION['ALA-R'],
-      css: 'top-[50%] transform -translate-y-1/2 left-[22%]',
+      css: 'bottom-[50%] transform translate-y-1/2 right-[22%]',
       selected: false,
     },
     {
       position: POSITION['ALA-L'],
-      css: 'top-[50%] transform -translate-y-1/2 right-[22%]',
+      css: 'bottom-[50%] transform translate-y-1/2 left-[22%]',
       selected: false,
     },
     {
       position: POSITION.PIV,
-      css: 'bottom-[200px]',
+      css: 'top-[200px]',
       selected: false,
     },
   ]);
