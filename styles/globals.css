@@ -3,22 +3,32 @@
 @tailwind utilities;
 
 @layer utilities {
-	.flex-center {
-		@apply flex justify-center items-center;
-	}
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
 }
 
 :root {
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-	}
+  :root {
+  }
 }
 
 body {
-	font-family: 'Inter', sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}
+
+.cardContainer {
+}
+
+.swipe:last-of-type {
+}
+
+.swipe {
+  position: absolute;
 }

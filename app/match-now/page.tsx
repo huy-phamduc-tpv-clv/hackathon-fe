@@ -1,3 +1,5 @@
+'use client';
+
 import { Background } from '@/components/Background';
 import { PlayerNavigationBar } from '@/components/PlayerNavigationBar';
 import Image from 'next/image';
@@ -6,14 +8,110 @@ import { PersonIcon } from '@/icons/person';
 import { JudgeIcon } from '../../icons/judge';
 import { DollarIcon } from '../../icons/dollar';
 import { MapSimpleMarker } from '../../icons/map-simple-marker';
-import { Button } from '@nextui-org/button';
+import { useEffect } from 'react';
+import useMatchList, { Match } from '@/store/useMatchList';
+import TinderCard from 'react-tinder-card';
 
 export default function MatchNow() {
+  const { getMatchList, setMatchList } = useMatchList();
+
+  useEffect(() => {
+    // call api to get Match List
+    const res = [
+      { id: '1' },
+      { id: '2' },
+      { id: '3' },
+      { id: '4' },
+      { id: '5' },
+      { id: '6' },
+      { id: '7' },
+      { id: '8' },
+    ];
+
+    setMatchList(res);
+  }, [setMatchList]);
+
+  const handleSwipe = (direction: string, match: Match) => {
+    if (direction === 'left') {
+      handleSkip(match);
+    }
+
+    if (direction === 'right') {
+      handleJoin(match);
+    }
+  };
+
+  const handleSkip = (match: Match) => {
+    console.log('skip', match);
+  };
+  const handleJoin = (match: Match) => {
+    console.log('join', match);
+  };
+
   return (
     <Background>
       <div className="pt-[10px]"></div>
-      <div className="flex justify-center relative h-[400px]">
-        <Image alt="" src={'/images/stadium.png'} width={330} height={400} />
+
+      <div className="cardContainer  h-[400px] flex-center">
+        {getMatchList().map((item: Match, index) => (
+          <TinderCard className="swipe" key={index} onSwipe={(dir) => handleSwipe(dir, item)}>
+            <div className="flex justify-center relative h-[400px]">
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_1.svg'} className="absolute top-[25px]" />
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_2.svg'} className="absolute top-[80px]" />
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_3.svg'} className="absolute top-[150px]" />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_4.svg'}
+                className="absolute top-[120px] right-[65px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_5.svg'}
+                className="absolute top-[120px] left-[65px]"
+              />
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_6.svg'} className="absolute top-[80px]" />
+
+              {/**/}
+
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_7.svg'} className="absolute bottom-[25px]" />
+              <Image alt="" width={43} height={43} src={'/psframe_/psframe_8.svg'} className="absolute bottom-[80px]" />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_9.svg'}
+                className="absolute bottom-[150px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_10.svg'}
+                className="absolute bottom-[120px] right-[65px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_11.svg'}
+                className="absolute bottom-[120px] left-[65px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={'/psframe_/psframe_12.svg'}
+                className="absolute bottom-[80px]"
+              />
+
+              <Image alt="" src={'/images/stadium.png'} width={330} height={400} />
+            </div>
+          </TinderCard>
+        ))}
       </div>
 
       <div className="text-[#A6E818] text-[36px] font-[500] text-center my-3">You got a match</div>
@@ -43,10 +141,14 @@ export default function MatchNow() {
           </p>
         </div>
 
-        <div className="flex mt-6 gap-4">
-          <Button className="w-full bg-[#FFFFFFE5] rounded-[8px]">Skip</Button>
-          <Button className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]">Join Now</Button>
-        </div>
+        {/* <div className="flex mt-6 gap-4">
+          <Button className="w-full bg-[#FFFFFFE5] rounded-[8px]" onPress={handleSkip}>
+            Skip
+          </Button>
+          <Button className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]" onPress={handleJoin}>
+            Join Now
+          </Button>
+        </div> */}
       </div>
 
       <PlayerNavigationBar />

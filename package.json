@@ -17,10 +17,12 @@
     "@nextui-org/progress": "^2.2.4",
     "@nextui-org/react": "^2.6.4",
     "@nextui-org/slider": "^2.4.5",
+    "@react-spring/web": "^9.7.5",
     "axios": "^1.7.9",
     "next": "15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-tinder-card": "^1.6.4",
     "uuid": "^11.0.3",
     "zustand": "^5.0.2"
   },
