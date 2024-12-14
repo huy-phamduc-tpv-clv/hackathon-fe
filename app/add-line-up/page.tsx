@@ -15,7 +15,7 @@ import useCardPayment from '@/store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
 import { GreenLeft } from '@/icons/green-left';
 
-export const PlayerProfile = () => {
+const PlayerProfile = () => {
 	const router = useRouter();
 	const { phone } = useToken();
 	const { getCards } = useCardPayment();

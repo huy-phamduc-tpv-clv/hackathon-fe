@@ -11,7 +11,7 @@ import { AddPaymentCard } from '@/icons/add-payment-card';
 import useToken from '../../store/useToken';
 import usePlayerType from '../../store/usePlayerType';
 
-export const PlayerType = () => {
+const PlayerType = () => {
 	const router = useRouter();
 	const { setPlayerTypes } = useToken();
 	const { getPlayerTypes } = usePlayerType();

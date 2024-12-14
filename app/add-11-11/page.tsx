@@ -8,7 +8,7 @@ import { Button } from '@nextui-org/button';
 import { Stadium } from '@/images/stadium';
 import { Position } from '../../components/Position';
 
-export const SelectGameType = () => {
+const SelectGameType = () => {
 	const router = useRouter();
 
 	const handleGoBack = () => {

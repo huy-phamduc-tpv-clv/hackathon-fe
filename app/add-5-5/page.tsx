@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { POSITION } from '../../constants/positive';
 import usePlayerType from '../../store/usePlayerType';
 
-export const SelectGameType = () => {
+const SelectGameType = () => {
 	const router = useRouter();
 	const { setPlayerTypes } = usePlayerType();
 
