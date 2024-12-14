@@ -61,7 +61,7 @@ export const DISTRICTS = {
 };
 
 export const WARDS = {
-	district1: {
+	quan1: {
 		label: 'District 1',
 		wards: [
 			'Ben Nghe',
@@ -73,7 +73,7 @@ export const WARDS = {
 			'Pham Ngu Lao',
 		],
 	},
-	district2: {
+	quan2: {
 		label: 'District 2',
 		wards: [
 			'Thao Dien',
@@ -85,7 +85,7 @@ export const WARDS = {
 			'Cat Lai',
 		],
 	},
-	district3: {
+	quan3: {
 		label: 'District 3',
 		wards: [
 			'Ward 1',
@@ -100,7 +100,7 @@ export const WARDS = {
 			'Ward 10',
 		],
 	},
-	district4: {
+	quan4: {
 		label: 'District 4',
 		wards: [
 			'Ward 1',
@@ -116,7 +116,7 @@ export const WARDS = {
 			'Ward 14',
 		],
 	},
-	district5: {
+	quan5: {
 		label: 'District 5',
 		wards: [
 			'Ward 1',
@@ -134,7 +134,7 @@ export const WARDS = {
 			'Ward 13',
 		],
 	},
-	district6: {
+	quan6: {
 		label: 'District 6',
 		wards: [
 			'Ward 1',
@@ -151,7 +151,7 @@ export const WARDS = {
 			'Ward 12',
 		],
 	},
-	district7: {
+	quan7: {
 		label: 'District 7',
 		wards: [
 			'Tan Thuan Dong',
@@ -164,7 +164,7 @@ export const WARDS = {
 			'Tan Hung',
 		],
 	},
-	district8: {
+	quan8: {
 		label: 'District 8',
 		wards: [
 			'Ward 1',
@@ -182,7 +182,7 @@ export const WARDS = {
 			'Ward 13',
 		],
 	},
-	district9: {
+	quan9: {
 		label: 'District 9',
 		wards: [
 			'Long Binh',
@@ -195,7 +195,7 @@ export const WARDS = {
 			'Phuoc Long B',
 		],
 	},
-	district10: {
+	quan10: {
 		label: 'District 10',
 		wards: [
 			'Ward 1',
@@ -212,7 +212,7 @@ export const WARDS = {
 			'Ward 12',
 		],
 	},
-	district11: {
+	quan11: {
 		label: 'District 11',
 		wards: [
 			'Ward 1',
@@ -233,7 +233,7 @@ export const WARDS = {
 			'Ward 16',
 		],
 	},
-	district12: {
+	quan12: {
 		label: 'District 12',
 		wards: [
 			'Thanh Loc',

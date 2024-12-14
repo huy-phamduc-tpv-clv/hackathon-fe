@@ -7,8 +7,16 @@ import { Background } from '../../components/Background';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import { useEffect, useState } from 'react';
-import { CITIES } from '../../constants/location';
+import { CITIES, WARDS } from '../../constants/location';
 import { Select, SelectItem, SharedSelection } from '@nextui-org/react';
+import { DISTRICTS } from '@/constants/location';
+import useLocations from '../../store/useLocation';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isFullFill = (o: any) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	return Object.values(o).filter((item: any) => item.length).length === 4;
+};
 
 function AddNewLocation() {
 	const router = useRouter();
@@ -18,19 +26,35 @@ function AddNewLocation() {
 		district: '',
 		address: '',
 	});
+	const { addLocations } = useLocations();
 
 	const handleGoBack = () => {
 		router.push('/location');
 	};
-
-	const handleSaveCard = () => {};
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
 	const handleSelectCity = (value: SharedSelection) => {
-		console.log('🚀 ~ handleSelectCity ~ value:', value.currentKey);
+		setLocation({ ...location, city: value.currentKey ?? '' });
+	};
+
+	const handleSelectDistrict = (value: SharedSelection) => {
+		setLocation({ ...location, district: value.currentKey ?? '' });
+	};
+
+	const handleSelectWard = (value: SharedSelection) => {
+		setLocation({ ...location, ward: value.currentKey ?? '' });
+	};
+
+	const handleChangeAddress = (value: string) => {
+		setLocation({ ...location, address: value ?? '' });
+	};
+
+	const handleCreateLocation = () => {
+		addLocations(location);
+		router.push('/location');
 	};
 
 	return (
@@ -39,8 +63,12 @@ function AddNewLocation() {
 				<Button
 					radius='sm'
 					color='default'
-					className={`text-white bg-primary-black' bg-neutral-300`}
-					onPress={handleSaveCard}
+					className={`text-white bg-primary-black' ${
+						isFullFill(location)
+							? 'bg-primary-black'
+							: 'bg-neutral-300'
+					}`}
+					onPress={handleCreateLocation}
 				>
 					Save
 				</Button>
@@ -72,33 +100,48 @@ function AddNewLocation() {
 								className='w-full'
 								label={
 									<span className='text-secondary-green'>
-										Ward
-									</span>
-								}
-								isRequired
-								placeholder='Please select'
-							>
-								{CITIES.map(city => (
-									<SelectItem key={city.key}>
-										{city.label}
-									</SelectItem>
-								))}
-							</Select>
-							<Select
-								className='w-full'
-								label={
-									<span className='text-secondary-green'>
 										District
 									</span>
 								}
 								isRequired
 								placeholder='Please select'
+								items={
+									DISTRICTS[location.city as 'Da Nang'] ?? []
+								}
+								onSelectionChange={handleSelectDistrict}
 							>
-								{CITIES.map(city => (
-									<SelectItem key={city.key}>
-										{city.label}
+								{district => (
+									<SelectItem key={district.key}>
+										{district.label}
 									</SelectItem>
-								))}
+								)}
+							</Select>
+							<Select
+								className='w-full'
+								label={
+									<span className='text-secondary-green'>
+										Ward
+									</span>
+								}
+								isRequired
+								placeholder='Please select'
+								items={
+									(
+										WARDS[location.district as 'quan1'] || {
+											wards: [],
+										}
+									).wards.map(item => ({
+										key: item,
+										label: item,
+									})) ?? []
+								}
+								onSelectionChange={handleSelectWard}
+							>
+								{district => (
+									<SelectItem key={district.key}>
+										{district.label}
+									</SelectItem>
+								)}
 							</Select>
 						</div>
 
@@ -110,7 +153,8 @@ function AddNewLocation() {
 									Address detail
 								</span>
 							}
-							value={''}
+							value={location.address}
+							onValueChange={handleChangeAddress}
 							maxLength={16}
 						/>
 					</div>
