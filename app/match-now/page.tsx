@@ -12,6 +12,10 @@ import { useEffect } from 'react';
 import useMatchList, { Match } from '@/store/useMatchList';
 import TinderCard from 'react-tinder-card';
 
+function getRandomNumber(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export default function MatchNow() {
   const { getMatchList, setMatchList } = useMatchList();
 
@@ -26,6 +30,15 @@ export default function MatchNow() {
       { id: '6' },
       { id: '7' },
       { id: '8' },
+
+      { id: '9' },
+      { id: '10' },
+      { id: '11' },
+      { id: '12' },
+      { id: '13' },
+      { id: '14' },
+      { id: '15' },
+      { id: '16' },
     ];
 
     setMatchList(res);
@@ -56,55 +69,91 @@ export default function MatchNow() {
         {getMatchList().map((item: Match, index) => (
           <TinderCard className="swipe" key={index} onSwipe={(dir) => handleSwipe(dir, item)}>
             <div className="flex justify-center relative h-[400px]">
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_1.svg'} className="absolute top-[25px]" />
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_2.svg'} className="absolute top-[80px]" />
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_3.svg'} className="absolute top-[150px]" />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_4.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute top-[25px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute top-[80px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute top-[150px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute top-[120px] right-[65px]"
               />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_5.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute top-[120px] left-[65px]"
               />
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_6.svg'} className="absolute top-[80px]" />
-
-              {/**/}
-
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_7.svg'} className="absolute bottom-[25px]" />
-              <Image alt="" width={43} height={43} src={'/psframe_/psframe_8.svg'} className="absolute bottom-[80px]" />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_9.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute top-[80px]"
+              />
+
+              {/**/}
+
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute bottom-[25px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                className="absolute bottom-[80px]"
+              />
+              <Image
+                alt=""
+                width={43}
+                height={43}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute bottom-[150px]"
               />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_10.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute bottom-[120px] right-[65px]"
               />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_11.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute bottom-[120px] left-[65px]"
               />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={'/psframe_/psframe_12.svg'}
+                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
                 className="absolute bottom-[80px]"
               />
 
