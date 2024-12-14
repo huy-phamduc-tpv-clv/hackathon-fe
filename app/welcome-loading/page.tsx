@@ -32,7 +32,7 @@ export default function WelcomeLoading() {
         if (isFieldOwner) {
           router.push('/fields');
         } else if (isPlayer) {
-          router.push('/profile');
+          router.push('/match-now');
         } else {
           router.push('/select-role');
         }

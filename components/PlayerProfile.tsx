@@ -38,6 +38,7 @@ export const PlayerProfile = () => {
     setName,
     getPlayerTimeTables,
     setUsrId,
+    logout,
   } = useToken();
   const { getCards } = useCardPayment();
   const { getPlayerTypes } = usePlayerType();
@@ -79,7 +80,10 @@ export const PlayerProfile = () => {
     router.push('/match-now');
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
 
   return (
     <div className="">
