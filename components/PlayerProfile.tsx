@@ -10,10 +10,10 @@ import { Input } from '@nextui-org/input';
 import useToken from '../store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import { NavigationBar } from '@/components/NavigationBar';
 import useCardPayment from '../store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
 import { GreenLeft } from '../icons/green-left';
+import { PlayerNavigationBar } from './PlayerNavigationBar';
 
 export const PlayerProfile = () => {
 	const router = useRouter();
@@ -191,7 +191,7 @@ export const PlayerProfile = () => {
 				</Background>
 			</div>
 
-			<NavigationBar />
+			<PlayerNavigationBar />
 		</div>
 	);
 };
