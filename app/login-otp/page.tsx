@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { Background } from "@/components/Background";
-import { Button, InputOtp } from "@nextui-org/react";
-import React, { useState } from "react";
-import { SeparateText } from "@/components/Separate";
-import { ArrowRightIcon } from "../../icons/arrow-right";
-import { ArrowLeftIcon } from "../../icons/arrow-left";
-import { useRouter } from "next/navigation";
-import useToken from "../../store/useToken";
-import axios from "@/apis";
+import { Background } from '@/components/Background';
+import { Button, InputOtp } from '@nextui-org/react';
+import React, { useState } from 'react';
+import { SeparateText } from '@/components/Separate';
+import { ArrowRightIcon } from '../../icons/arrow-right';
+import { ArrowLeftIcon } from '../../icons/arrow-left';
+import { useRouter } from 'next/navigation';
+import useToken from '../../store/useToken';
+import axios from '@/apis';
 
 const isFullFill = (otpInputted: string) => otpInputted.length === 4;
 const addStars = (str: string) => {
-  const lastChars = (str || "00").slice(-2);
-  return "******** " + lastChars;
+  const lastChars = (str || '00').slice(-2);
+  return '******** ' + lastChars;
 };
 
 export default function LoginOtpPage() {
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState('');
   const router = useRouter();
   const { setToken } = useToken();
   const { phone } = useToken();
@@ -25,29 +25,35 @@ export default function LoginOtpPage() {
   //   const [usrId, setUsrId] = useState(globalUsrId);
 
   const configUI = !isFullFill(otp)
-    ? { color: "bg-neutral-300", buttonText: "Continue" }
+    ? { color: 'bg-neutral-300', buttonText: 'Continue' }
     : {
-        color: "bg-primary-black",
-        buttonText: "Verify me",
+        color: 'bg-primary-black',
+        buttonText: 'Verify me',
       };
 
   const handleVerifyOtp = async () => {
     if (otp.length !== 4) return;
 
-    setToken("token-key");
+    setToken('token-key');
     try {
       const res = await axios.get(`user/info/byPhone?phone=${phone}`);
       const data = res.data;
-      console.log(data.id);
+
       setUsrId(data.id);
       setAge(data.age);
       setName(data.name);
       setEmail(data.email);
       setUserType(data.userType);
     } catch (error) {
+      setUsrId('');
+      setAge('');
+      setName('');
+      setEmail('');
+      setUserType('');
+
       console.log(error);
     } finally {
-      router.push("/welcome-loading");
+      router.push('/welcome-loading');
     }
   };
 
@@ -59,14 +65,7 @@ export default function LoginOtpPage() {
             Enter the 4-digit code sent to your {`${addStars(phone)}`}
           </h2>
 
-          <InputOtp
-            className="mx-auto my-1"
-            size="lg"
-            length={4}
-            value={otp}
-            onValueChange={setOtp}
-            textAlign="left"
-          />
+          <InputOtp className="mx-auto my-1" size="lg" length={4} value={otp} onValueChange={setOtp} textAlign="left" />
 
           <Button
             radius="sm"
@@ -88,12 +87,7 @@ export default function LoginOtpPage() {
         </div>
 
         <div className="w-full flex justify-between mb-16">
-          <Button
-            size="sm"
-            radius="sm"
-            className="min-w-[48px] h-[48px] p-0"
-            onPress={() => router.push("login")}
-          >
+          <Button size="sm" radius="sm" className="min-w-[48px] h-[48px] p-0" onPress={() => router.push('login')}>
             <ArrowLeftIcon />
           </Button>
           <Button

@@ -27,12 +27,12 @@ const SelectGameType = () => {
       selected: false,
     },
     {
-      position: POSITION['ALA-R'],
+      position: POSITION['ALAR'],
       css: 'bottom-[50%] transform translate-y-1/2 right-[22%]',
       selected: false,
     },
     {
-      position: POSITION['ALA-L'],
+      position: POSITION['ALAL'],
       css: 'bottom-[50%] transform translate-y-1/2 left-[22%]',
       selected: false,
     },
@@ -65,6 +65,7 @@ const SelectGameType = () => {
 
   const handleSavePositive = () => {
     setPlayerTypes(getPlayerTypes());
+    router.push('/profile');
   };
 
   return (

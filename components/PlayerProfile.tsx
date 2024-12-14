@@ -14,20 +14,84 @@ import useCardPayment from '../store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
 import { GreenLeft } from '../icons/green-left';
 import { PlayerNavigationBar } from './PlayerNavigationBar';
+import axios from '@/apis';
+import { ROLE } from '../constants/role';
+import usePlayerType from '../store/usePlayerType';
+import useRatePrice from '../store/useRatePrice';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const canSave = (timeTable: any, playerType: any, rate: any) => {
+  return timeTable?.length > 0 && playerType?.length > 0 && Object.values(rate).length > 0;
+};
 
 export const PlayerProfile = () => {
   const router = useRouter();
-  const { phone } = useToken();
+  const {
+    phone,
+    usr_id,
+    setPhone,
+    getEmail,
+    setEmail,
+    setAge,
+    getAge,
+    getName,
+    setName,
+    getPlayerTimeTables,
+    setUsrId,
+  } = useToken();
   const { getCards } = useCardPayment();
+  const { getPlayerTypes } = usePlayerType();
+  const { getRate } = useRatePrice();
 
   const handleGoBack = () => {
-    router.push('select-role');
+    if (!usr_id) {
+      router.push('/select-role');
+    }
   };
+
+  const handleClickSave = async () => {
+    if (!usr_id) {
+      try {
+        const res = await axios.post('user/register', {
+          phoneNumber: phone,
+          name: getName(),
+          age: getAge(),
+          email: getEmail(),
+          userType: ROLE.PLAYER,
+          playerGameInfo: {
+            preferGameType: 'FIVE_FIVE',
+            preferLocation: 'TAN BINH',
+            playerTimeTables: getPlayerTimeTables().map((item) => ({
+              dateOfWeek: item.dateOfWeek,
+              startHour: +item.startHour,
+              endHour: +item.endHour,
+            })),
+            playerTypes: getPlayerTypes(),
+          },
+        });
+        const data = res.data;
+        setUsrId(data.id);
+      } catch (error) {
+        console.log('🚀 ~ handleClickSave ~ error:', error);
+      }
+    }
+
+    router.push('/match-now');
+  };
+
+  console.log(canSave(getPlayerTimeTables(), getPlayerTypes(), getRate()));
 
   return (
     <div className="">
       <Header back={handleGoBack}>
-        <Button radius="sm" color="default" className="text-white bg-neutral-300">
+        <Button
+          radius="sm"
+          color="default"
+          className={`text-white ${
+            canSave(getPlayerTimeTables(), getPlayerTypes(), getRate()) ? 'bg-black' : 'bg-neutral-300'
+          }`}
+          onPress={handleClickSave}
+        >
           Save
         </Button>
       </Header>
@@ -60,16 +124,32 @@ export const PlayerProfile = () => {
               placeholder="Please input"
               label={<span className="text-secondary-green">Name</span>}
               isRequired
+              value={getName()}
+              onValueChange={setName}
             />
-            <Input size="md" placeholder="Please input" label={<span className="text-secondary-green">Age</span>} />
             <Input
-              value={phone}
+              size="md"
+              placeholder="Please input"
+              label={<span className="text-secondary-green">Age</span>}
+              type="number"
+              value={getAge()}
+              onValueChange={setAge}
+            />
+            <Input
               size="md"
               placeholder="Please input"
               label={<span className="text-secondary-green">Phone</span>}
               isRequired
+              value={phone}
+              onValueChange={setPhone}
             />
-            <Input size="md" placeholder="Please input" label={<span className="text-secondary-green">Email</span>} />
+            <Input
+              size="md"
+              placeholder="Please input"
+              label={<span className="text-secondary-green">Email</span>}
+              value={getEmail()}
+              onValueChange={setEmail}
+            />
           </div>
 
           <div className="px-3 flex flex-col mt-2 mb-4">
