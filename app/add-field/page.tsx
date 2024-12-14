@@ -1,45 +1,36 @@
-"use client";
+'use client';
 
-import WithAuth from "../../hoc/WithAuth";
-import { Header } from "@/components/Header";
-import { useRouter } from "next/navigation";
-import { Background } from "../../components/Background";
-import { Button } from "@nextui-org/button";
-import { Input, Textarea } from "@nextui-org/input";
-import { useEffect, useState } from "react";
-import { v4 as uid } from "uuid";
-import { Checkbox, CheckboxGroup, Select, SelectItem } from "@nextui-org/react";
-import { AddPaymentCard } from "@/icons/add-payment-card";
-import useField, { Field } from "@/store/useField";
-import { city, districts, wards } from "../datas/data-common";
+import WithAuth from '../../hoc/WithAuth';
+import { Header } from '@/components/Header';
+import { useRouter } from 'next/navigation';
+import { Background } from '../../components/Background';
+import { Button } from '@nextui-org/button';
+import { Input, Textarea } from '@nextui-org/input';
+import { useEffect, useState } from 'react';
+import { v4 as uid } from 'uuid';
+import { Checkbox, CheckboxGroup, Select, SelectItem } from '@nextui-org/react';
+import { AddPaymentCard } from '@/icons/add-payment-card';
+import useField, { Field } from '@/store/useField';
+import { city, districts, wards } from '../datas/data-common';
 
 const isInputted = (field: Field) => {
-  return (
-    field.field_name.length &&
-    field.city.length &&
-    field.ward.length &&
-    field.district.length
-  );
+  return field.field_name.length && field.city.length && field.ward.length && field.district.length;
 };
 
 function Profile() {
   const router = useRouter();
   const [isCheckBoxAllTrue, setIsCheckBoxAllTrue] = useState<boolean>(false);
-  const [districtFake, setDistrictFake] = useState<
-    { key: string; label: string }[]
-  >([]);
-  const [wardFake, setWardFake] = useState<{ key: string; label: string }[]>(
-    []
-  );
+  const [districtFake, setDistrictFake] = useState<{ key: string; label: string }[]>([]);
+  const [wardFake, setWardFake] = useState<{ key: string; label: string }[]>([]);
   const [field, setField] = useState<Field>({
-    id_owner: "",
+    id_owner: '',
     id: uid(),
-    field_name: "",
-    city: "",
-    ward: "",
-    district: "",
-    address_detail: "",
-    description: "",
+    field_name: '',
+    city: '',
+    ward: '',
+    district: '',
+    address_detail: '',
+    description: '',
     services: [],
     medias: [],
   });
@@ -49,14 +40,14 @@ function Profile() {
   const { addField } = useField();
 
   const checkboxItems = [
-    { value: "wifi", label: "Wifi" },
-    { value: "food", label: "Food" },
-    { value: "rest-room", label: "Restroom" },
-    { value: "car-park", label: "Car park" },
+    { value: 'wifi', label: 'Wifi' },
+    { value: 'food', label: 'Food' },
+    { value: 'rest-room', label: 'Restroom' },
+    { value: 'car-park', label: 'Car park' },
   ];
 
   const handleGoBack = () => {
-    router.push("/fields");
+    router.push('/fields');
   };
 
   const handleCheckAll = (value: boolean) => {
@@ -80,11 +71,11 @@ function Profile() {
       ...preState,
       city: value,
     }));
-    if (value == "tpHcm") {
+    if (value == 'tpHcm') {
       setDistrictFake(loc_districts[0]);
-    } else if (value == "tpDn") {
+    } else if (value == 'tpDn') {
       setDistrictFake(loc_districts[1]);
-    } else if (value == "thdHn") {
+    } else if (value == 'thdHn') {
       setDistrictFake(loc_districts[2]);
     }
   };
@@ -116,7 +107,7 @@ function Profile() {
 
     addField(field);
 
-    router.push("/fields");
+    router.push('/fields');
   };
 
   useEffect(() => {
@@ -129,9 +120,7 @@ function Profile() {
         <Button
           radius="sm"
           color="default"
-          className={`text-white ${
-            isInputted(field) ? " bg-primary-black" : "bg-neutral-300"
-          }`}
+          className={`text-white ${isInputted(field) ? ' bg-primary-black' : 'bg-neutral-300'}`}
           onPress={handleSaveField}
           disabled
         >
@@ -208,9 +197,7 @@ function Profile() {
               <Textarea
                 size="md"
                 placeholder="Please input"
-                label={
-                  <span className="text-secondary-green">Address Number</span>
-                }
+                label={<span className="text-secondary-green">Address Number</span>}
                 value={field.address_detail}
                 onValueChange={(value) =>
                   setField((preState) => ({
@@ -224,9 +211,7 @@ function Profile() {
               <Textarea
                 size="md"
                 placeholder="Please input"
-                label={
-                  <span className="text-secondary-green">Description</span>
-                }
+                label={<span className="text-secondary-green">Description</span>}
                 value={field.description}
                 onValueChange={(value) =>
                   setField((preState) => ({
@@ -242,11 +227,7 @@ function Profile() {
               <div className="grid grid-cols-2 grid-flow-row">
                 <h4 className="font-medium text-xl items-start">Service</h4>
                 <div className="flex gap-4 justify-end">
-                  <Checkbox
-                    size="md"
-                    isSelected={isCheckBoxAllTrue}
-                    onValueChange={handleCheckAll}
-                  >
+                  <Checkbox size="md" isSelected={isCheckBoxAllTrue} onValueChange={handleCheckAll}>
                     ALL
                   </Checkbox>
                 </div>
