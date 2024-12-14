@@ -13,7 +13,7 @@ import usePlayerType from '../../store/usePlayerType';
 
 const SelectGameType = () => {
 	const router = useRouter();
-	const { setPlayerTypes } = usePlayerType();
+	const { setPlayerTypes, getPlayerTypes } = usePlayerType();
 
 	const [positions, setPositions] = useState([
 		{
@@ -51,7 +51,7 @@ const SelectGameType = () => {
 		const p = positions[index];
 		p.selected = !p.selected;
 
-		setPositions([...positions]);
+		setPositions(JSON.parse(JSON.stringify(positions)));
 
 		const store = positions.filter(item => item.selected);
 		setPlayerTypes(
@@ -61,6 +61,10 @@ const SelectGameType = () => {
 				position: item.position,
 			})),
 		);
+	};
+
+	const handleSavePositive = () => {
+		setPlayerTypes(getPlayerTypes());
 	};
 
 	return (
@@ -74,6 +78,7 @@ const SelectGameType = () => {
 							? 'bg-primary-black'
 							: 'bg-neutral-300'
 					}`}
+					onPress={handleSavePositive}
 				>
 					Save
 				</Button>

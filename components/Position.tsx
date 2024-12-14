@@ -7,7 +7,7 @@ export const Position = ({
 }) => {
 	return (
 		<div
-			className={`bg-neutral-50 w-[47px] h-[43px] flex-center rounded-[100px]
+			className={`w-[47px] h-[43px] flex-center rounded-[100px]
 				${selected ? 'bg-[#A6E818]' : 'bg-neutral-50'}`}
 		>
 			{content}

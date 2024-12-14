@@ -165,14 +165,17 @@ export const PlayerProfile = () => {
 							</div>
 						</div>
 
-						{/* <div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
-							<div className='ml-6'>Game type</div>
+						<div
+							className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'
+							onClick={() => router.push('location')}
+						>
+							<div className='ml-6'>Location</div>
 							<div className='mr-10'>
 								<GreenLeft />
 							</div>
 						</div>
 
-						<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
+						{/*<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
 							<div className='ml-6'>Location</div>
 							<div className='mr-10'>
 								<GreenLeft />

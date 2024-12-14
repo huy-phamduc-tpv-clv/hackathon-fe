@@ -8,20 +8,12 @@ import { Button } from '@nextui-org/button';
 import { NavigationBar } from '@/components/NavigationBar';
 import { GreenLeft } from '../../icons/green-left';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import useToken from '../../store/useToken';
-import usePlayerType from '../../store/usePlayerType';
 
 const PlayerType = () => {
 	const router = useRouter();
-	const { setPlayerTypes } = useToken();
-	const { getPlayerTypes } = usePlayerType();
 
 	const handleGoBack = () => {
 		router.push('select-role');
-	};
-
-	const handleSavePositive = () => {
-		setPlayerTypes(getPlayerTypes());
 	};
 
 	return (
@@ -31,7 +23,6 @@ const PlayerType = () => {
 					radius='sm'
 					color='default'
 					className='text-white bg-neutral-300'
-					onPress={handleSavePositive}
 				>
 					Save
 				</Button>
