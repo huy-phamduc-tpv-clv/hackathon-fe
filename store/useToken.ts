@@ -21,7 +21,6 @@ interface TokenState {
 		startHour: string;
 		endHour: string;
 	}[];
-
 	setPlayerTimeTables: (
 		newPlayerTimeTables: {
 			dateOfWeek: string;
@@ -33,6 +32,25 @@ interface TokenState {
 		dateOfWeek: string;
 		startHour: string;
 		endHour: string;
+	}[];
+
+	// Player Types
+	playerTypes: {
+		playerType: string;
+		pitchType: string;
+		position: string;
+	}[];
+	setPlayerTypes: (
+		newPlayerTypes: {
+			playerType: string;
+			pitchType: string;
+			position: string;
+		}[],
+	) => void;
+	getPlayerTypes: () => {
+		playerType: string;
+		pitchType: string;
+		position: string;
 	}[];
 }
 
@@ -62,6 +80,12 @@ const useToken = create<TokenState>()(
 				setPlayerTimeTables: newPlayerTimeTables =>
 					set({ playerTimeTables: newPlayerTimeTables }),
 				getPlayerTimeTables: () => get().playerTimeTables,
+
+				// Player Types
+				playerTypes: [],
+				setPlayerTypes: newPlayerTypes =>
+					set({ playerTypes: newPlayerTypes }),
+				getPlayerTypes: () => get().playerTypes,
 			}),
 			{ name: 'auth-token' },
 		),

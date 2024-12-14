@@ -1,19 +1,19 @@
 'use client';
 
-import WithAuth from '../hoc/WithAuth';
+import WithAuth from '../../hoc/WithAuth';
 import { Header } from '@/components/Header';
 import { useRouter } from 'next/navigation';
-import { Background } from './Background';
+import { Background } from '@/components/Background';
 import Image from 'next/image';
-import { Pen } from '../icons/pen';
+import { Pen } from '@/icons/pen';
 import { Input } from '@nextui-org/input';
-import useToken from '../store/useToken';
+import useToken from '@/store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
 import { NavigationBar } from '@/components/NavigationBar';
-import useCardPayment from '../store/useCardPayment';
+import useCardPayment from '@/store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
-import { GreenLeft } from '../icons/green-left';
+import { GreenLeft } from '@/icons/green-left';
 
 export const PlayerProfile = () => {
 	const router = useRouter();
