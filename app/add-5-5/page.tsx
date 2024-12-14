@@ -7,12 +7,60 @@ import { Background } from '@/components/Background';
 import { Button } from '@nextui-org/button';
 import { Stadium } from '@/images/stadium';
 import { Position } from '../../components/Position';
+import { useState } from 'react';
+import { POSITION } from '../../constants/positive';
+import usePlayerType from '../../store/usePlayerType';
 
 export const SelectGameType = () => {
 	const router = useRouter();
+	const { setPlayerTypes } = usePlayerType();
+
+	const [positions, setPositions] = useState([
+		{
+			position: POSITION.GK,
+			css: 'top-[50px]',
+			selected: false,
+		},
+		{
+			position: POSITION.CD,
+			css: 'top-[200px]',
+			selected: false,
+		},
+		{
+			position: POSITION.RM,
+			css: 'top-[50%] transform -translate-y-1/2 left-[22%]',
+			selected: false,
+		},
+		{
+			position: POSITION.LM,
+			css: 'top-[50%] transform -translate-y-1/2 right-[22%]',
+			selected: false,
+		},
+		{
+			position: POSITION.FW,
+			css: 'bottom-[200px]',
+			selected: false,
+		},
+	]);
 
 	const handleGoBack = () => {
 		router.push('player-type');
+	};
+
+	const handleSelectPositive = (index: number) => {
+		const p = positions[index];
+		p.selected = !p.selected;
+
+		setPositions([...positions]);
+
+		const store = positions.filter(item => item.selected);
+		setPlayerTypes(
+			store.map(item => ({
+				playerType: 'SINGLE',
+				pitchType: 'FIVE_FIVE',
+				position: item.position,
+			})),
+		);
 	};
 
 	return (
@@ -21,7 +69,11 @@ export const SelectGameType = () => {
 				<Button
 					radius='sm'
 					color='default'
-					className='text-white bg-neutral-300'
+					className={`text-white ${
+						positions.filter(item => item.selected).length
+							? 'bg-primary-black'
+							: 'bg-neutral-300'
+					}`}
 				>
 					Save
 				</Button>
@@ -42,21 +94,19 @@ export const SelectGameType = () => {
 
 					<div className='mt-5 flex justify-center relative'>
 						<Stadium />
-						<div className='absolute top-[50px]'>
-							<Position content='GK' />
-						</div>
-						<div className='absolute top-[200px]'>
-							<Position content='CD' />
-						</div>
-						<div className='absolute top-[50%] transform -translate-y-1/2 left-[22%]'>
-							<Position content='RM' />
-						</div>
-						<div className='absolute top-[50%] transform -translate-y-1/2 right-[22%]'>
-							<Position content='LM' />
-						</div>
-						<div className='absolute bottom-[200px]'>
-							<Position content='FW' />
-						</div>
+
+						{positions.map((item, index) => (
+							<div
+								className={`absolute ${item.css}`}
+								key={index}
+								onClick={() => handleSelectPositive(index)}
+							>
+								<Position
+									content={item.position}
+									selected={item.selected}
+								/>
+							</div>
+						))}
 					</div>
 
 					<div className='h-[100px]'></div>

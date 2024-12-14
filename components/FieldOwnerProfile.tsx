@@ -42,7 +42,11 @@ export const FieldOwnerProfile = () => {
 		router.push('/fields');
 	};
 	const isInputted = (profileOwner: ProfileOwner) => {
-		return profileOwner.owner_name.length && profileOwner.phone_number.length && profileOwner.age.length;
+		return (
+			profileOwner.owner_name.length &&
+			profileOwner.phone_number.length &&
+			profileOwner.age.length
+		);
 	};
 	return (
 		<div className=''>
@@ -50,10 +54,11 @@ export const FieldOwnerProfile = () => {
 				<Button
 					radius='sm'
 					color='default'
-					className={`text-white ${isInputted(profileOwner)
-						? ' bg-primary-black'
-						: 'bg-neutral-300'
-						}`}
+					className={`text-white ${
+						isInputted(profileOwner)
+							? ' bg-primary-black'
+							: 'bg-neutral-300'
+					}`}
 					onPress={handleSaveCard}
 				>
 					Save
@@ -118,7 +123,6 @@ export const FieldOwnerProfile = () => {
 									age: value,
 								}))
 							}
-							isRequired
 						/>
 						<Input
 							size='md'

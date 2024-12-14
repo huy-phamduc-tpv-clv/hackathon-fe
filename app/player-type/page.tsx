@@ -8,15 +8,20 @@ import { Button } from '@nextui-org/button';
 import { NavigationBar } from '@/components/NavigationBar';
 import { GreenLeft } from '../../icons/green-left';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import { PaymentCard } from '@/components/PaymentCard';
-import useCardPayment from '@/store/useCardPayment';
+import useToken from '../../store/useToken';
+import usePlayerType from '../../store/usePlayerType';
 
 export const PlayerType = () => {
 	const router = useRouter();
-	const { getCards } = useCardPayment();
+	const { setPlayerTypes } = useToken();
+	const { getPlayerTypes } = usePlayerType();
 
 	const handleGoBack = () => {
 		router.push('select-role');
+	};
+
+	const handleSavePositive = () => {
+		setPlayerTypes(getPlayerTypes());
 	};
 
 	return (
@@ -26,6 +31,7 @@ export const PlayerType = () => {
 					radius='sm'
 					color='default'
 					className='text-white bg-neutral-300'
+					onPress={handleSavePositive}
 				>
 					Save
 				</Button>
@@ -108,13 +114,6 @@ export const PlayerType = () => {
 					</div>
 
 					<div className='px-3 flex flex-col gap-3 '>
-						{getCards().map(item => (
-							<PaymentCard
-								key={item.id}
-								card={item}
-							/>
-						))}
-
 						<Button
 							radius='sm'
 							className='mt-4 w-full font-inter text-regular text-secondary-green font-normal text-opacity-80 bg-[#FFFFFFE5] h-[48px] text-[16px]'
