@@ -1,7 +1,7 @@
 export const POSITION = {
-	GK: 'GK',
-	CD: 'CD',
-	RM: 'RM',
-	LM: 'LM',
-	FW: 'FW',
+  GK: 'GK',
+  FIX: 'FIX',
+  'ALA-R': 'ALA-R',
+  'ALA-L': 'ALA-L',
+  PIV: 'PIV',
 };
