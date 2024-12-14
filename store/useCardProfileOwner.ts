@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface ProfileOwner {
-	owner_name: string;
+	name: string;
 	id: string;
 	type: string;
 	age: string;
@@ -18,7 +18,7 @@ interface ProfileOwnerState {
 
 const useProfileOwner = create<ProfileOwnerState>((set) => ({
 	profileOwner: {
-		owner_name: '',
+		name: '',
 		id: '',
 		type: '',
 		age: '',
@@ -34,7 +34,7 @@ const useProfileOwner = create<ProfileOwnerState>((set) => ({
 	clearProfileOwner: () =>
 		set({
 			profileOwner: {
-				owner_name: '',
+				name: '',
 				id: '',
 				type: '',
 				age: '',

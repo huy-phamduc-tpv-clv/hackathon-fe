@@ -10,11 +10,22 @@ interface TokenState {
 	setToken: (newToken: string) => void;
 	removeToken: () => void;
 	hasToken: () => boolean;
+	usr_id: string;
+	setUsrId: (newUsrId: string) => void;
+	getUsrId: () => string;
 	userType: string;
 	setUserType: (newUser: string) => void;
 	isPlayer: boolean;
 	isFieldOwner: boolean;
-
+	name: string;
+	setName: (newName: string) => void;
+	getName: () => string;
+	age: string;
+	setAge: (newAge: string) => void;
+	getAge: () => string;
+	email: string;
+	setEmail: (newEmail: string) => void;
+	getEmail: () => string;
 	// player time tables
 	playerTimeTables: {
 		dateOfWeek: string;
@@ -65,6 +76,9 @@ const useToken = create<TokenState>()(
 				setToken: newToken => set({ token: newToken }),
 				removeToken: () => set({ token: '' }),
 				hasToken: () => !!get().token,
+				usr_id:'',
+				setUsrId: newUsrId => set({ usr_id: newUsrId }),
+				getUsrId: () => get().usr_id,
 				userType: '',
 				setUserType: userType =>
 					set({
@@ -74,6 +88,19 @@ const useToken = create<TokenState>()(
 					}),
 				isPlayer: false,
 				isFieldOwner: false,
+				
+
+				name: '',
+				setName: newName => set({ name: newName }),
+				getName: () => get().name,
+
+				age: '',
+				setAge: newAge => set({ age: newAge }),
+				getAge: () => get().age,
+
+				email: '',
+				setEmail: newEmail => set({ email: newEmail }),
+				getEmail: () => get().email,
 
 				// player time tables
 				playerTimeTables: [],

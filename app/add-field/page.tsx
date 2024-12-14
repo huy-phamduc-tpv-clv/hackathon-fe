@@ -116,7 +116,7 @@ function Profile() {
 
     addField(field);
 
-    // router.push("/fields");
+    router.push("/fields");
   };
 
   useEffect(() => {
@@ -253,7 +253,7 @@ function Profile() {
               </div>
 
               <CheckboxGroup
-                color="secondary"
+                color="primary"
                 defaultValue={field.services}
                 orientation="horizontal"
                 value={field.services}
