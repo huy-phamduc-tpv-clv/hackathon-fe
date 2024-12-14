@@ -17,6 +17,7 @@ const isInputted = (card: Card) => {
 function Profile() {
 	const router = useRouter();
 	const [card, setCard] = useState<Card>({
+		owner_name: '',
 		card_number: '',
 		cvv: '',
 		expiration: '',
@@ -85,11 +86,10 @@ function Profile() {
 				<Button
 					radius='sm'
 					color='default'
-					className={`text-white ${
-						isInputted(card)
-							? ' bg-primary-black'
-							: 'bg-neutral-300'
-					}`}
+					className={`text-white ${isInputted(card)
+						? ' bg-primary-black'
+						: 'bg-neutral-300'
+						}`}
 					onPress={handleSaveCard}
 					disabled
 				>
@@ -105,6 +105,23 @@ function Profile() {
 					</div>
 
 					<div className='px-3 pt-4  flex flex-col gap-3'>
+						<Input
+							size='md'
+							placeholder='Please input'
+							label={
+								<span className='text-secondary-green'>
+									Owner Name
+								</span>
+							}
+							value={card.owner_name}
+							onValueChange={value =>
+								setCard(preState => ({
+									...preState,
+									owner_name: value.toUpperCase(),
+								}))
+							}
+							maxLength={50}
+						/>
 						<Input
 							size='md'
 							placeholder='Please input'

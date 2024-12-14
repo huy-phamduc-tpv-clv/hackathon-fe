@@ -7,29 +7,54 @@ import { Background } from './Background';
 import Image from 'next/image';
 import { Pen } from '../icons/pen';
 import { Input } from '@nextui-org/input';
-import useToken from '../store/useToken';
 import { Button } from '@nextui-org/button';
 import { AddPaymentCard } from '@/icons/add-payment-card';
 import { NavigationBar } from '@/components/NavigationBar';
 import useCardPayment from '../store/useCardPayment';
 import { PaymentCard } from '@/components/PaymentCard';
+import useCardProfileOwner, { ProfileOwner } from '@/store/useCardProfileOwner';
+import { useState } from 'react';
+import useToken from '@/store/useToken';
 
 export const FieldOwnerProfile = () => {
-	const router = useRouter();
 	const { phone } = useToken();
+
+	const router = useRouter();
 	const { getCards } = useCardPayment();
 
 	const handleGoBack = () => {
 		router.push('select-role');
 	};
+	const [profileOwner, setProfileOwner] = useState<ProfileOwner>({
+		owner_name: '',
+		id: '',
+		type: '',
+		age: '',
+		phone_number: phone,
+		email: '',
+	});
+	const { addProfileOwner } = useCardProfileOwner();
+	const handleSaveCard = () => {
+		if (!isInputted(profileOwner)) return;
 
+		addProfileOwner(profileOwner);
+
+		router.push('/profile');
+	};
+	const isInputted = (profileOwner: ProfileOwner) => {
+		return profileOwner.owner_name.length && profileOwner.phone_number.length;
+	};
 	return (
 		<div className=''>
 			<Header back={handleGoBack}>
 				<Button
 					radius='sm'
 					color='default'
-					className='text-white bg-neutral-300'
+					className={`text-white ${isInputted(profileOwner)
+						? ' bg-primary-black'
+						: 'bg-neutral-300'
+						}`}
+					onPress={handleSaveCard}
 				>
 					Save
 				</Button>
@@ -69,6 +94,13 @@ export const FieldOwnerProfile = () => {
 									Name
 								</span>
 							}
+							value={profileOwner.owner_name}
+							onValueChange={value =>
+								setProfileOwner(preState => ({
+									...preState,
+									owner_name: value,
+								}))
+							}
 							isRequired
 						/>
 						<Input
@@ -79,10 +111,16 @@ export const FieldOwnerProfile = () => {
 									Age
 								</span>
 							}
+							value={profileOwner.age}
+							onValueChange={value =>
+								setProfileOwner(preState => ({
+									...preState,
+									age: value,
+								}))
+							}
 							isRequired
 						/>
 						<Input
-							value={phone}
 							size='md'
 							placeholder='Please input'
 							label={
@@ -90,6 +128,8 @@ export const FieldOwnerProfile = () => {
 									Phone
 								</span>
 							}
+							value={phone}
+							disabled
 							isRequired
 						/>
 						<Input
@@ -99,6 +139,13 @@ export const FieldOwnerProfile = () => {
 								<span className='text-secondary-green'>
 									Email
 								</span>
+							}
+							value={profileOwner.email}
+							onValueChange={value =>
+								setProfileOwner(preState => ({
+									...preState,
+									email: value,
+								}))
 							}
 						/>
 					</div>

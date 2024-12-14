@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 export interface Card {
+	owner_name: string;
 	id: string;
 	type: string;
 	card_number: string;
