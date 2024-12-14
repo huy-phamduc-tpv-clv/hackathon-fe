@@ -72,14 +72,14 @@ export const PlayerProfile = () => {
         const data = res.data;
         setUsrId(data.id);
       } catch (error) {
-        console.log('🚀 ~ handleClickSave ~ error:', error);
+        console.error('🚀 ~ handleClickSave ~ error:', error);
       }
     }
 
     router.push('/match-now');
   };
 
-  console.log(canSave(getPlayerTimeTables(), getPlayerTypes(), getRate()));
+  const handleLogout = () => {};
 
   return (
     <div className="">
@@ -218,6 +218,14 @@ export const PlayerProfile = () => {
                 <GreenLeft />
               </div>
             </div>
+
+            <Button
+              className="w-full h-[48px] rounded-[8px] text-white bg-black"
+              onPress={() => handleLogout()}
+              color="danger"
+            >
+              <div>Logout</div>
+            </Button>
 
             {/*<div className='w-full h-[48px] rounded-[8px] flex flex-start bg-[#FFFFFFE5] items-center justify-between'>
 							<div className='ml-6'>Rate/Price</div>
