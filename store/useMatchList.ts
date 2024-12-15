@@ -2,6 +2,18 @@ import { create } from 'zustand';
 
 export interface Match {
   id: string;
+
+  name?: string;
+
+  date?: string;
+  timeSlotStart?: string;
+  timeSlotEnd?: string;
+
+  fieldName?: string;
+  pitchName?: string;
+
+  refereeType?: string;
+  price?: string;
 }
 
 interface UseListMatch {

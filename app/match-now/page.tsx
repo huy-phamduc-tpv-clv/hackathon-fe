@@ -8,12 +8,12 @@ import { PersonIcon } from '@/icons/person';
 import { JudgeIcon } from '../../icons/judge';
 import { DollarIcon } from '../../icons/dollar';
 import { MapSimpleMarker } from '../../icons/map-simple-marker';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useMatchList, { Match } from '@/store/useMatchList';
 import TinderCard from 'react-tinder-card';
 import { Button } from '@nextui-org/button';
 import { useRouter } from 'next/navigation';
-// import axios from '@/apis';
+import axios from '@/apis';
 import useToken from '@/store/useToken';
 
 function getRandomNumber(min: number, max: number): number {
@@ -24,7 +24,23 @@ const DefaultImage = () => {
   return `/png/psframe_${getRandomNumber(2, 102)}.png`;
 };
 
+function convertDateFormat(dateString: string): string {
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+
+  if (!regex.test(dateString)) {
+    return '';
+  }
+
+  const [year, month, day] = dateString.split('-');
+  return `${day}/${month}/${year}`;
+}
+
+function formatCurrencyCustom(amount: string): string {
+  return amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 export default function MatchNow() {
+  const [currentMatch, setCurrentMatch] = useState<Match>({ id: '' });
   const { getMatchList, setMatchList, swiftRight } = useMatchList();
   const { getUsrId } = useToken();
   const randomME = [
@@ -44,32 +60,75 @@ export default function MatchNow() {
 
   useEffect(() => {
     const fetchList = async () => {
-      console.log(getUsrId());
-      // const response = await axios.get('/game/match', { headers: { ['USERID']: getUsrId(), AAA: 1, bbb: 1 } });
-      // const data = response.data;
-      // console.log('🚀 ~ fetchList ~ data:', data);
+      try {
+        const response = await axios.get('/game/match', { headers: { ['USERID']: getUsrId(), AAA: 1, bbb: 1 } });
+        const data = response.data;
+        console.log('🚀 ~ fetchList ~ data:', data);
 
-      const res = [
-        { id: '1' },
-        { id: '2' },
-        { id: '3' },
-        { id: '4' },
-        { id: '5' },
-        { id: '6' },
-        { id: '7' },
-        { id: '8' },
+        const MAP_REFEREE_TYPE = {
+          MANDATORY: 'Mandatory',
+          NOT_REQUIRED: 'No referee',
+          PLAYER_CHOICE: 'Player Choice',
+          '': 'No referee',
+        };
 
-        { id: '9' },
-        { id: '10' },
-        { id: '11' },
-        { id: '12' },
-        { id: '13' },
-        { id: '14' },
-        { id: '15' },
-        { id: '16' },
-      ];
+        setCurrentMatch({
+          id: data[0]?.id ?? '',
+          name: data[0]?.name || '',
 
-      setMatchList(res);
+          date: convertDateFormat(data[0]?.date ?? ''),
+          timeSlotStart: data[0]?.timeSlot?.startHour ?? '',
+          timeSlotEnd: data[0]?.timeSlot?.endHour ?? '',
+
+          fieldName: data[0]?.field?.fieldName ?? '',
+          pitchName: data[0]?.pitch?.name ?? '',
+
+          refereeType: MAP_REFEREE_TYPE[(data[0]?.refereeType as '') ?? ''],
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          price: formatCurrencyCustom(data[0].price as ''),
+        });
+        setMatchList(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data.map((item: any, index: number) => ({
+            id: item?.id || index,
+            name: item?.name || '',
+
+            date: convertDateFormat(item?.date ?? ''),
+            timeSlotStart: item?.timeSlot?.startHour ?? '',
+            timeSlotEnd: item?.timeSlot?.endHour ?? '',
+
+            fieldName: item?.field?.fieldName ?? '',
+            pitchName: item?.pitch?.name ?? '',
+
+            refereeType: MAP_REFEREE_TYPE[(item.refereeType as '') ?? ''],
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            price: formatCurrencyCustom(item.price as ''),
+          })),
+        );
+      } catch (error) {
+        console.log('🚀 ~ fetchList ~ error:', error);
+        const res = [
+          { id: '1' },
+          { id: '2' },
+          { id: '3' },
+          { id: '4' },
+          { id: '5' },
+          { id: '6' },
+          { id: '7' },
+          { id: '8' },
+
+          { id: '9' },
+          { id: '10' },
+          { id: '11' },
+          { id: '12' },
+          { id: '13' },
+          { id: '14' },
+          { id: '15' },
+          { id: '16' },
+        ];
+        setMatchList(res);
+        setCurrentMatch(res[0]);
+      }
     };
 
     if (getUsrId()) {
@@ -85,6 +144,8 @@ export default function MatchNow() {
     if (direction === 'right') {
       handleJoin(match);
     }
+
+    setCurrentMatch(match);
   };
 
   const handleSkip = (match: Match) => {
@@ -147,14 +208,17 @@ export default function MatchNow() {
       <div className="text-[#A6E818] text-[36px] font-[500] text-center my-3">You got a match</div>
 
       <div className="px-5 text-[#FFFFFFE5]">
-        <p className="text-[#FFFFFFE5] font-[500] text-[16px]">Group Stage - OPUS Terminal versus OPUS CNTR</p>
+        <p className="text-[#FFFFFFE5] font-[500] text-[16px]">{`${
+          currentMatch.name || `Group Stage - OPUS Terminal versus OPUS CNTR`
+        }`}</p>
         <p className="text-[#FFFFFFE5] font-[300] text-[12px] flex mt-3 gap-3">
           <CalendarIcon />
-          12/12/2024 - 18:00 - 20:00
+          {currentMatch.date || '12/12/2024'} - {currentMatch.timeSlotStart || `18`}:00 -{' '}
+          {currentMatch.timeSlotEnd || `20`}:00
         </p>
         <p className="text-[#FFFFFFE5] font-[300] text-[12px] mt-1 flex gap-1 items-center">
           <MapSimpleMarker />
-          San bong K334 - Pitch #1
+          {currentMatch.fieldName || 'San bong K334'} - {currentMatch.pitchName || 'Pitch'} #1
         </p>
         <div className="flex text-[#FFFFFFE5] font-[300] text-[12px] gap-3 mt-1">
           <p className="flex gap-3 items-center">
@@ -163,11 +227,11 @@ export default function MatchNow() {
           </p>
           <p className="flex gap-1 items-center">
             <JudgeIcon />
-            No referee
+            {currentMatch.refereeType || 'No referee'}
           </p>
           <p className="flex gap-1 items-center">
             <DollarIcon />
-            85,000 VND
+            {currentMatch.price || '85,000'} VND
           </p>
         </div>
 

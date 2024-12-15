@@ -121,27 +121,27 @@ function MyGame() {
               <div className="flex mt-3 gap-1">
                 <div className="h-[30px] w-[30px] bg-secondary-green rounded-full flex-center flex-col">
                   <p className="text-[8px] text-white">GK</p>
-                  <p className="text-[8px] text-white">(2/2)</p>
+                  <p className="text-[8px] text-white">(1/1)</p>
                 </div>
 
                 <div className="h-[30px] w-[30px] bg-secondary-green rounded-full flex-center flex-col">
                   <p className="text-[8px] text-white">FIX</p>
-                  <p className="text-[8px] text-white">(2/2)</p>
+                  <p className="text-[8px] text-white">(1/1)</p>
                 </div>
 
                 <div className="h-[30px] w-[30px] bg-secondary-green rounded-full flex-center flex-col">
                   <p className="text-[8px] text-white">ALA</p>
-                  <p className="text-[8px] text-white">(2/2)</p>
+                  <p className="text-[8px] text-white">(1/1)</p>
                 </div>
 
                 <div className="h-[30px] w-[30px] bg-secondary-green rounded-full flex-center flex-col">
                   <p className="text-[8px] text-white">PIV</p>
-                  <p className="text-[8px] text-white">(2/2)</p>
+                  <p className="text-[8px] text-white">(1/1)</p>
                 </div>
 
                 <div className="h-[30px] w-[30px] bg-white rounded-full flex-center flex-col">
                   <p className="text-[8px]">SUB</p>
-                  <p className="text-[8px]">(0/2)</p>
+                  <p className="text-[8px]">(0/1)</p>
                 </div>
               </div>
             </div>
