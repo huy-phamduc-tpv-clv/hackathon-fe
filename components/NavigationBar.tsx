@@ -37,7 +37,7 @@ export const NavigationBar = () => {
       >
         <div className="flex flex-col justify-center items-center" onClick={handleRouteDashboard}>
           <NavMap isActive={isMap} />
-          <p className="text-sm pt-1 font-normal text-neutral-700">List</p>
+          <p className={`text-sm pt-1 ${isMap ? 'text-black font-[600]' : 'text-neutral-700 font-[400]'}`}>List</p>
         </div>
         <div className="flex flex-col justify-center items-center" onClick={() => router.push('/map')}>
           <NavDashboard isActive={isDashboard} />
@@ -49,7 +49,9 @@ export const NavigationBar = () => {
         </div>
         <div className="flex flex-col justify-center items-center" onClick={() => router.push('/profile')}>
           <NavProfile isActive={isProfile} />
-          <p className="text-sm pt-1 font-semibold text-primary-black">Profile</p>
+          <p className={`text-sm pt-1 ${isProfile ? 'text-black font-[600]' : 'text-neutral-700 font-[400]'}`}>
+            Profile
+          </p>
         </div>
       </div>
     </footer>

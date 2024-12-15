@@ -80,14 +80,14 @@ const PitchCard: React.FC<Pitch> = ({
           </div>
           <div className="col-span-3">
             <div className="flex flex-col">
-              <h2 className="text-lg font-semibold leading-none text-default-600">{pitchName}</h2>
+              <h2 className="text-xl font-semibold leading-none text-default-600">{pitchName}</h2>
               <div>
                 <MapSimpleMarker /> {selectedLabels.join(', ')}
               </div>
             </div>
           </div>
-          <div className="col-span-1">
-            <Button className="w-full h-auto">
+          <div className="col-span-1 p-auto flex-center mx-2 ">
+            <Button className="bg-slate-100" size="lg">
               <Pen />
             </Button>
           </div>
