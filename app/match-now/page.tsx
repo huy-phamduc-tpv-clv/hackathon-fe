@@ -161,7 +161,7 @@ export default function MatchNow() {
   return (
     <Background>
       <div className="pt-[10px]"></div>
-
+      <div className="text-secondary-green text-[36px] font-[500] text-center">You got a match!</div>
       <div className="cardContainer  h-[400px] flex-center">
         {getMatchList().map((item: Match, index) => (
           <TinderCard className="swipe" key={index} onSwipe={(dir) => handleSwipe(dir, item)}>
@@ -207,9 +207,7 @@ export default function MatchNow() {
         ))}
       </div>
 
-      <div className="text-[#A6E818] text-[36px] font-[500] text-center my-3">You got a match!</div>
-
-      <div className="px-5 text-[#FFFFFFE5]">
+      <div className="px-5 mt-3 text-[#FFFFFFE5]">
         <p className="text-[#FFFFFFE5] font-[500] text-[16px]">{`${
           currentMatch.name || `Group Stage - OPUS Terminal versus OPUS CNTR`
         }`}</p>
