@@ -205,7 +205,7 @@ export default function MatchNow() {
         ))}
       </div>
 
-      <div className="text-[#A6E818] text-[36px] font-[500] text-center my-3">You got a match</div>
+      <div className="text-[#A6E818] text-[36px] font-[500] text-center my-3">You got a match!</div>
 
       <div className="px-5 text-[#FFFFFFE5]">
         <p className="text-[#FFFFFFE5] font-[500] text-[16px]">{`${
@@ -240,7 +240,7 @@ export default function MatchNow() {
             className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]"
             onPress={() => router.push('/my-game')}
           >
-            Join Now
+            View My Game
           </Button>
         </div>
       </div>

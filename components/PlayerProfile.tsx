@@ -21,6 +21,7 @@ import useRatePrice from '../store/useRatePrice';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const canSave = (timeTable: any, playerType: any, rate: any) => {
+  console.log(timeTable, playerType, rate);
   return timeTable?.length > 0 && playerType?.length > 0 && Object.values(rate).length > 0;
 };
 
