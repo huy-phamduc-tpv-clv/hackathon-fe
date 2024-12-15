@@ -143,7 +143,7 @@ function Profile() {
     }));
   };
   const handleSetTime = (id: string) => {
-    setDay({ id: id, startHour: '', startMinute: '', endHour: '', endMinute: '' });
+    setDay({ id: id, startHour: '00', startMinute: '00', endHour: '00', endMinute: '00' });
     onOpen();
   };
 
@@ -165,7 +165,7 @@ function Profile() {
   const handleAddTimeItem = () => {
     setTimeDetails([
       ...(timeDetails || []),
-      { id: uid(), startHour: '', startMinute: '', endHour: '', endMinute: '', cur: 'USD', price: 0 },
+      { id: uid(), startHour: '00', startMinute: '00', endHour: '00', endMinute: '00', cur: 'USD', price: 0 },
     ]);
   };
   const handleSavePitch = async () => {
