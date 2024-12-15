@@ -36,7 +36,7 @@ function convertDateFormat(dateString: string): string {
 }
 
 function formatCurrencyCustom(amount: string): string {
-  return amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return (amount + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function MatchNow() {
@@ -65,6 +65,8 @@ export default function MatchNow() {
         const data = response.data;
         console.log('🚀 ~ fetchList ~ data:', data);
 
+        if (data.length <= 0) throw Error('');
+
         const MAP_REFEREE_TYPE = {
           MANDATORY: 'Mandatory',
           NOT_REQUIRED: 'No referee',
@@ -85,7 +87,7 @@ export default function MatchNow() {
 
           refereeType: MAP_REFEREE_TYPE[(data[0]?.refereeType as '') ?? ''],
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          price: formatCurrencyCustom(data[0].price as ''),
+          price: formatCurrencyCustom(data[0].price || ('' as const) + ''),
         });
         setMatchList(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
