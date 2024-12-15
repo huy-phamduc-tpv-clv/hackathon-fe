@@ -10,7 +10,7 @@ export const PlayerNavigationBar = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const isDashboard = pathname?.startsWith('/dashboard') || pathname?.startsWith('/fields');
+  const isDashboard = pathname?.startsWith('/match-now') || pathname?.startsWith('/fields');
   const isMap = pathname?.startsWith('/map');
   const isRevenue = pathname?.startsWith('/revenue');
   const isProfile = pathname?.startsWith('/profile');

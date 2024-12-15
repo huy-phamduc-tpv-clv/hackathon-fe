@@ -13,39 +13,69 @@ import useMatchList, { Match } from '@/store/useMatchList';
 import TinderCard from 'react-tinder-card';
 import { Button } from '@nextui-org/button';
 import { useRouter } from 'next/navigation';
+// import axios from '@/apis';
+import useToken from '@/store/useToken';
 
 function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const DefaultImage = () => {
+  return `/png/psframe_${getRandomNumber(2, 102)}.png`;
+};
+
 export default function MatchNow() {
   const { getMatchList, setMatchList, swiftRight } = useMatchList();
+  const { getUsrId } = useToken();
+  const randomME = [
+    'top-[25px]',
+    'top-[80px]',
+    'top-[150px]',
+    'top-[120px] right-[65px]',
+    'top-[120px] left-[65px]',
+
+    'bottom-[25px]',
+    'bottom-[80px]',
+    'bottom-[150px]',
+    'bottom-[120px] right-[65px]',
+    'bottom-[120px] left-[65px]',
+  ];
   const router = useRouter();
 
   useEffect(() => {
-    // call api to get Match List
-    const res = [
-      { id: '1' },
-      { id: '2' },
-      { id: '3' },
-      { id: '4' },
-      { id: '5' },
-      { id: '6' },
-      { id: '7' },
-      { id: '8' },
+    const fetchList = async () => {
+      console.log(getUsrId());
+      // const response = await axios.get('/game/match', { headers: { ['USERID']: getUsrId(), AAA: 1, bbb: 1 } });
+      // const data = response.data;
+      // console.log('🚀 ~ fetchList ~ data:', data);
 
-      { id: '9' },
-      { id: '10' },
-      { id: '11' },
-      { id: '12' },
-      { id: '13' },
-      { id: '14' },
-      { id: '15' },
-      { id: '16' },
-    ];
+      const res = [
+        { id: '1' },
+        { id: '2' },
+        { id: '3' },
+        { id: '4' },
+        { id: '5' },
+        { id: '6' },
+        { id: '7' },
+        { id: '8' },
 
-    setMatchList(res);
-  }, [setMatchList]);
+        { id: '9' },
+        { id: '10' },
+        { id: '11' },
+        { id: '12' },
+        { id: '13' },
+        { id: '14' },
+        { id: '15' },
+        { id: '16' },
+      ];
+
+      setMatchList(res);
+    };
+
+    if (getUsrId()) {
+      fetchList();
+    }
+  }, [getUsrId, setMatchList]);
 
   const handleSwipe = (direction: string, match: Match) => {
     if (direction === 'left') {
@@ -73,92 +103,38 @@ export default function MatchNow() {
         {getMatchList().map((item: Match, index) => (
           <TinderCard className="swipe" key={index} onSwipe={(dir) => handleSwipe(dir, item)}>
             <div className="flex justify-center relative h-[400px]">
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[25px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[80px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[150px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[120px] right-[65px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[120px] left-[65px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute top-[80px]"
-              />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute top-[25px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute top-[80px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute top-[150px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute top-[120px] right-[65px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute top-[120px] left-[65px]" />
 
               {/**/}
 
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute bottom-[25px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute bottom-[80px]" />
+              <Image alt="" width={43} height={43} src={DefaultImage()} className="absolute bottom-[150px]" />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute bottom-[25px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute bottom-[80px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute bottom-[150px]"
-              />
-              <Image
-                alt=""
-                width={43}
-                height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                src={DefaultImage()}
                 className="absolute bottom-[120px] right-[65px]"
               />
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
+                src={DefaultImage()}
                 className="absolute bottom-[120px] left-[65px]"
               />
+
               <Image
                 alt=""
                 width={43}
                 height={43}
-                src={`/psframe_/psframe_${getRandomNumber(2, 102)}.svg`}
-                className="absolute bottom-[80px]"
+                src={`/psframe_/psframe_1.svg`}
+                className={`absolute ${randomME[getRandomNumber(0, 9)]}`}
               />
 
               <Image alt="" src={'/images/stadium.png'} width={330} height={400} />
@@ -199,10 +175,12 @@ export default function MatchNow() {
             className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]"
             onPress={() => router.push('/my-game')}
           >
-            Check Out Matched Profiles
+            Join Now
           </Button>
         </div>
       </div>
+
+      <div className="h-[150px]"></div>
 
       <PlayerNavigationBar />
     </Background>
