@@ -28,6 +28,7 @@ function Profile() {
   const { usr_id } = useToken();
   const { getField } = useField();
   const pre_field = getField(id ? id : '');
+  console.log(pre_field);
   const [isCheckBoxAllTrue, setIsCheckBoxAllTrue] = useState<boolean>(false);
   const [field, setField] = useState<Field>({
     id_owner: pre_field ? pre_field.id_owner : '',
@@ -159,46 +160,50 @@ function Profile() {
               />
 
               <div className="grid grid-rows-2 grid-flow-col w-full gap-3">
-                <Select
-                  className="w-full"
+                <Input
+                  size="md"
+                  placeholder="Please input"
                   label={<span className="text-secondary-green">City</span>}
+                  value={field.city}
+                  isReadOnly
+                  onValueChange={(value) =>
+                    setField((preState) => ({
+                      ...preState,
+                      city: value,
+                    }))
+                  }
                   isRequired
-                  placeholder="Please select your city"
-                  items={CITIES}
-                  onSelectionChange={handleSelectCity}
-                >
-                  {(city) => <SelectItem key={city.key}>{city.label}</SelectItem>}
-                </Select>
+                />
+
                 <div className="grid grid-cols-2 gap-3">
-                  <Select
-                    className="w-full"
+                  <Input
+                    size="md"
+                    placeholder="Please input"
                     label={<span className="text-secondary-green">District</span>}
-                    isRequired
-                    placeholder="Please select"
-                    items={DISTRICTS[field.city as 'Da Nang'] ?? []}
-                    onSelectionChange={handleSelectDistrict}
-                  >
-                    {(district) => <SelectItem key={district.key}>{district.label}</SelectItem>}
-                  </Select>
-                  <Select
-                    className="w-full"
-                    label={<span className="text-secondary-green">Ward</span>}
-                    isRequired
-                    placeholder="Please select"
-                    items={
-                      (
-                        WARDS[field.district as 'quan1'] || {
-                          wards: [],
-                        }
-                      ).wards.map((item) => ({
-                        key: item,
-                        label: item,
-                      })) ?? []
+                    value={field.district}
+                    isReadOnly
+                    onValueChange={(value) =>
+                      setField((preState) => ({
+                        ...preState,
+                        district: value,
+                      }))
                     }
-                    onSelectionChange={handleSelectWard}
-                  >
-                    {(district) => <SelectItem key={district.key}>{district.label}</SelectItem>}
-                  </Select>
+                    isRequired
+                  />
+                  <Input
+                    size="md"
+                    placeholder="Please input"
+                    label={<span className="text-secondary-green">Ward</span>}
+                    value={field.ward}
+                    isReadOnly
+                    onValueChange={(value) =>
+                      setField((preState) => ({
+                        ...preState,
+                        ward: value,
+                      }))
+                    }
+                    isRequired
+                  />
                 </div>
               </div>
 

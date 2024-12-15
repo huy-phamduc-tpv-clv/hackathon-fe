@@ -186,8 +186,6 @@ function Profile() {
         {
           ...pitch,
           name: pitch.pitchName,
-          // address: pitch.address_detail,
-          // service: pitch.services,
           pitchTypes: pitch.pitchType,
           pitchTimeSlots: pitch.timeTable,
         },
@@ -197,7 +195,7 @@ function Profile() {
           },
         },
       );
-      router.push(`/pitchs?${id}`);
+      router.push(`/pitchs?id=${id}`);
     } catch (error) {
       console.log(error);
     }
@@ -316,7 +314,7 @@ function Profile() {
               {timeDetails?.map((item) => (
                 <div key={item.id} className="w-full grid grid-cols-5 grid-flow-col gap-1">
                   <div
-                    className="bg-[#FFFFFFE5] h-full w-full flex justify-center items-center rounded-[8px] text-[12px] font-normal text-neutral-500 cursor-pointer col-span-2"
+                    className="bg-[#FFFFFFE5] w-full flex justify-center items-center rounded-[8px] text-[12px] font-normal text-neutral-500 cursor-pointer col-span-2"
                     onClick={() => handleSetTime(item.id)}
                   >
                     {item.startHour && item.endHour

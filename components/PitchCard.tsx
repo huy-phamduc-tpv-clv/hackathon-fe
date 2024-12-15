@@ -9,6 +9,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+const checkboxPitchTypeItems = [
+  { value: 'FIVE_FIVE', label: '5-5' },
+  { value: 'SEVEN_SEVEN', label: '7-7' },
+  { value: 'ELEVEN_ELEVEN', label: '11-11' },
+];
+
 const PitchCard: React.FC<Pitch> = ({
   ownerId,
   fieldId,
@@ -19,6 +25,9 @@ const PitchCard: React.FC<Pitch> = ({
   grassType,
   timeTable,
 }) => {
+  const selectedLabels = pitchType.map(
+    (value) => checkboxPitchTypeItems.find((item) => item.value === value)?.label || value,
+  );
   return (
     // <Card className="w-full p-3 mt-3">
     //   <CardHeader className="justify-between">
@@ -62,22 +71,23 @@ const PitchCard: React.FC<Pitch> = ({
     //     </div>
     //   </CardBody>
     // </Card>
+
     <div>
       <Card className="w-full p-3 mt-3">
         <CardBody className="w-full grid grid-cols-6 grid-flow-row gap-2">
           <div className="col-span-2">
-            <Image src={'/images/pitch.png'} alt={`pitch-image-pitch2`} width="154" height="138"></Image>
+            <Image src={'/images/pitch.jpg'} alt={`pitch-image-pitch2`} width="154" height="138"></Image>
           </div>
           <div className="col-span-3">
             <div className="flex flex-col">
               <h2 className="text-lg font-semibold leading-none text-default-600">{pitchName}</h2>
               <div>
-                <MapSimpleMarker /> {pitchType}
+                <MapSimpleMarker /> {selectedLabels.join(', ')}
               </div>
             </div>
           </div>
           <div className="col-span-1">
-            <Button className="w-full h-full">
+            <Button className="w-full h-auto">
               <Pen />
             </Button>
           </div>

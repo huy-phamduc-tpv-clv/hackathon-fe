@@ -13,6 +13,29 @@ import FieldCard from '@/components/CardField';
 import Image from 'next/image';
 import PitchCard from '@/components/PitchCard';
 
+type MappedPitch = {
+  id: string;
+  name: string;
+  description: string;
+  pitchTypes: MappedPitchTypes[];
+  mediaFiles: MappedMediaFiles[];
+  pitchTimeSlots: [];
+  grassTypeEnum: null;
+  field: string;
+  userId: string;
+};
+
+type MappedPitchTypes = {
+  id: string;
+  pitchType: string;
+  pitch: string;
+};
+
+type MappedMediaFiles = {
+  id: string;
+  pitchType: string;
+  pitch: string;
+};
 export const ListPitchs = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,8 +55,20 @@ export const ListPitchs = () => {
         const res = await axios.get(`field/${id}/pitch`, { headers: { USERID: usr_id } });
         const data = res.data;
         let test: Pitch[] = [];
+        console.log(data);
         if (data.length > 0) {
-          test = data;
+          data.forEach((element: MappedPitch) => {
+            test.push({
+              pitchName: element.name,
+              fieldId: element.field,
+              grassType: [],
+              description: element.description,
+              timeTable: element.pitchTimeSlots,
+              id: element.id,
+              ownerId: element.userId,
+              pitchType: element.pitchTypes.map((service) => service.pitchType),
+            });
+          });
         }
         addPitch(test);
       } catch (error) {
@@ -62,15 +97,17 @@ export const ListPitchs = () => {
           <div className="p-5">
             {pitchs.length > 0 ? (
               pitchs.map((pitch, index) => (
-                // <FieldCard
-                //   key={pitch.id}
-                //   pitchName={pitch.pitchName}
-                //   description={pitch.description}
-                //   id={pitch.id}
-                //   fieldId={pitch.fieldId}
-                // />
-                // <PitchCard />
-                <p key={index}></p>
+                <PitchCard
+                  pitchName={pitch.pitchName}
+                  id={pitch.id}
+                  description={pitch.description}
+                  fieldId={pitch.fieldId}
+                  grassType={pitch.grassType}
+                  pitchType={pitch.pitchType}
+                  timeTable={pitch.timeTable}
+                  key={pitch.id}
+                  ownerId={pitch.ownerId}
+                />
               ))
             ) : (
               <>
