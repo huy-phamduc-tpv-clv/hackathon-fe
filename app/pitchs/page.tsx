@@ -9,7 +9,6 @@ import { Background } from '@/components/Background';
 import { NavigationContent } from '@/components/NavigationContent';
 import useToken from '@/store/useToken';
 import usePitch, { Pitch } from '@/store/usePitch';
-import FieldCard from '@/components/CardField';
 import Image from 'next/image';
 import PitchCard from '@/components/PitchCard';
 
@@ -36,7 +35,7 @@ type MappedMediaFiles = {
   pitchType: string;
   pitch: string;
 };
-export const ListPitchs = () => {
+const ListPitchs = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { usr_id } = useToken();
@@ -54,7 +53,7 @@ export const ListPitchs = () => {
       try {
         const res = await axios.get(`field/${id}/pitch`, { headers: { USERID: usr_id } });
         const data = res.data;
-        let test: Pitch[] = [];
+        const test: Pitch[] = [];
         console.log(data);
         if (data.length > 0) {
           data.forEach((element: MappedPitch) => {
@@ -96,7 +95,7 @@ export const ListPitchs = () => {
 
           <div className="p-5">
             {pitchs.length > 0 ? (
-              pitchs.map((pitch, index) => (
+              pitchs.map((pitch) => (
                 <PitchCard
                   pitchName={pitch.pitchName}
                   id={pitch.id}

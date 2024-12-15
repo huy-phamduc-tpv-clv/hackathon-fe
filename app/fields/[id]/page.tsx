@@ -7,13 +7,12 @@ import { Background } from '../../../components/Background';
 import { Button } from '@nextui-org/button';
 import { Input, Textarea } from '@nextui-org/input';
 import { useEffect, useState } from 'react';
-import { Checkbox, CheckboxGroup, Select, SelectItem, SharedSelection } from '@nextui-org/react';
+import { Checkbox, CheckboxGroup } from '@nextui-org/react';
 import { AddPaymentCard } from '@/icons/add-payment-card';
 import useField, { Field } from '@/store/useField';
 
 import axios from '@/apis/index';
 import useToken from '@/store/useToken';
-import { CITIES, DISTRICTS, WARDS } from '@/constants/location';
 import { NavigationContent } from '@/components/NavigationContent';
 
 const isInputted = (field: Field) => {
@@ -68,18 +67,6 @@ function Profile() {
         services: [],
       }));
     }
-  };
-
-  const handleSelectCity = (value: SharedSelection) => {
-    setField({ ...field, city: value.currentKey ?? '' });
-  };
-
-  const handleSelectDistrict = (value: SharedSelection) => {
-    setField({ ...field, district: value.currentKey ?? '' });
-  };
-
-  const handleSelectWard = (value: SharedSelection) => {
-    setField({ ...field, ward: value.currentKey ?? '' });
   };
 
   const handleCheckGroup = (value: string[]) => {

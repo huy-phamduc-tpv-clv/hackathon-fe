@@ -50,7 +50,7 @@ export const ListFields = () => {
       try {
         const res = await axios.get('field', { headers: { USERID: usr_id } });
         const data = res.data;
-        let test: Field[] = [];
+        const test: Field[] = [];
 
         if (data.length > 0) {
           data.forEach((element: MappedField) => {

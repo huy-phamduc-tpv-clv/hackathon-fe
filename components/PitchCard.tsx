@@ -1,12 +1,7 @@
-import { Location } from '@/icons/location';
 import { MapSimpleMarker } from '@/icons/map-simple-marker';
-import { Money } from '@/icons/money';
-import { Pen } from '@/icons/pen';
-import { Rating } from '@/icons/rating';
 import { Pitch } from '@/store/usePitch';
-import { Button, Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody } from '@nextui-org/react';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 
 const checkboxPitchTypeItems = [
@@ -15,16 +10,7 @@ const checkboxPitchTypeItems = [
   { value: 'ELEVEN_ELEVEN', label: '11-11' },
 ];
 
-const PitchCard: React.FC<Pitch> = ({
-  ownerId,
-  fieldId,
-  id,
-  pitchName,
-  description,
-  pitchType,
-  grassType,
-  timeTable,
-}) => {
+const PitchCard: React.FC<Pitch> = ({ pitchName, pitchType }) => {
   const selectedLabels = pitchType.map(
     (value) => checkboxPitchTypeItems.find((item) => item.value === value)?.label || value,
   );
