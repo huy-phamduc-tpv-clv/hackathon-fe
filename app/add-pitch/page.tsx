@@ -51,10 +51,10 @@ function Profile() {
   });
   const [day, setDay] = useState({
     id: '',
-    endHour: '',
-    endMinute: '',
-    startHour: '',
-    startMinute: '',
+    endHour: '00',
+    endMinute: '00',
+    startHour: '00',
+    startMinute: '00',
   });
 
   const checkboxPitchTypeItems = [
