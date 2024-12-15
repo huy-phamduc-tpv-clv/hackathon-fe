@@ -78,18 +78,13 @@ const PitchCard: React.FC<Pitch> = ({
           <div className="col-span-2">
             <Image src={'/images/pitch.jpg'} alt={`pitch-image-pitch2`} width="154" height="138"></Image>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-4">
             <div className="flex flex-col">
-              <h2 className="text-xl font-semibold leading-none text-default-600">{pitchName}</h2>
+              <h2 className="text-lg font-semibold leading-none text-default-600">{pitchName}</h2>
               <div>
                 <MapSimpleMarker /> {selectedLabels.join(', ')}
               </div>
             </div>
-          </div>
-          <div className="col-span-1 p-auto flex-center mx-2 ">
-            <Button className="bg-slate-100" size="lg">
-              <Pen />
-            </Button>
           </div>
         </CardBody>
       </Card>
