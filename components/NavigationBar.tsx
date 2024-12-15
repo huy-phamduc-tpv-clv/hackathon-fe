@@ -13,8 +13,8 @@ export const NavigationBar = () => {
   const router = useRouter();
   const { userType } = useToken();
 
-  const isDashboard = pathname?.startsWith('/dashboard') || pathname?.startsWith('/fields');
-  const isMap = pathname?.startsWith('/map');
+  const isDashboard = pathname?.startsWith('/dashboard');
+  const isMap = pathname?.startsWith('/map') || pathname?.startsWith('/fields');
   const isRevenue = pathname?.startsWith('/revenue');
   const isProfile = pathname?.startsWith('/profile');
 
@@ -35,11 +35,11 @@ export const NavigationBar = () => {
           gridTemplateRows: '1fr',
         }}
       >
-        <div className="flex flex-col justify-center items-center" onClick={() => router.push('/map')}>
+        <div className="flex flex-col justify-center items-center" onClick={handleRouteDashboard}>
           <NavMap isActive={isMap} />
           <p className="text-sm pt-1 font-normal text-neutral-700">List</p>
         </div>
-        <div className="flex flex-col justify-center items-center" onClick={handleRouteDashboard}>
+        <div className="flex flex-col justify-center items-center" onClick={() => router.push('/map')}>
           <NavDashboard isActive={isDashboard} />
           <p className="text-sm pt-1 font-normal text-neutral-700">Dashboard</p>
         </div>

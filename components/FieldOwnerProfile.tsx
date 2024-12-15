@@ -18,7 +18,7 @@ import useToken from '@/store/useToken';
 import axios from '@/apis/index';
 
 export const FieldOwnerProfile = () => {
-  const { setUsrId, setAge, setEmail, setUserType, setName, phone, removeToken } = useToken();
+  const { setUsrId, setAge, setEmail, setUserType, setName, phone, removeToken, name, email, age } = useToken();
 
   const router = useRouter();
   const { getCards } = useCardPayment();
@@ -31,12 +31,12 @@ export const FieldOwnerProfile = () => {
     router.push('/');
   };
   const [profileOwner, setProfileOwner] = useState<ProfileOwner>({
-    name: '',
+    name: name,
     id: '',
     type: '',
-    age: '',
+    age: age,
     phone_number: phone,
-    email: '',
+    email: email,
   });
   const { updateProfileOwner } = useCardProfileOwner();
   const handleSaveCard = async () => {

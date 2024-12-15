@@ -1,20 +1,20 @@
 'use client';
 
-import WithAuth from '../../hoc/WithAuth';
+import WithAuth from '../../../hoc/WithAuth';
 import { Header } from '@/components/Header';
-import { useRouter } from 'next/navigation';
-import { Background } from '../../components/Background';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Background } from '../../../components/Background';
 import { Button } from '@nextui-org/button';
 import { Input, Textarea } from '@nextui-org/input';
 import { useEffect, useState } from 'react';
-import { v4 as uid } from 'uuid';
 import { Checkbox, CheckboxGroup, Select, SelectItem, SharedSelection } from '@nextui-org/react';
 import { AddPaymentCard } from '@/icons/add-payment-card';
-import { Field } from '@/store/useField';
-import { CITIES, DISTRICTS, WARDS } from '@/constants/location';
+import useField, { Field } from '@/store/useField';
 
 import axios from '@/apis/index';
 import useToken from '@/store/useToken';
+import { CITIES, DISTRICTS, WARDS } from '@/constants/location';
+import { NavigationContent } from '@/components/NavigationContent';
 
 const isInputted = (field: Field) => {
   return field.field_name.length && field.city.length && field.ward.length && field.district.length;
@@ -22,18 +22,23 @@ const isInputted = (field: Field) => {
 
 function Profile() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get('id');
   const { usr_id } = useToken();
+  const { getField } = useField();
+  const pre_field = getField(id ? id : '');
   const [isCheckBoxAllTrue, setIsCheckBoxAllTrue] = useState<boolean>(false);
   const [field, setField] = useState<Field>({
-    id_owner: '',
-    id: uid(),
-    field_name: '',
-    city: '',
-    ward: '',
-    district: '',
-    address_detail: '',
-    description: '',
-    services: [],
+    id_owner: pre_field ? pre_field.id_owner : '',
+    id: pre_field ? pre_field.id : '',
+    field_name: pre_field ? pre_field.field_name : '',
+    city: pre_field ? pre_field.city : '',
+    ward: pre_field ? pre_field.ward : '',
+    district: pre_field ? pre_field.district : '',
+    address_detail: pre_field ? pre_field.address_detail : '',
+    description: pre_field ? pre_field.description : '',
+    services: pre_field ? pre_field.services : [],
     medias: [],
   });
 
@@ -63,6 +68,7 @@ function Profile() {
       }));
     }
   };
+
   const handleSelectCity = (value: SharedSelection) => {
     setField({ ...field, city: value.currentKey ?? '' });
   };
@@ -76,11 +82,7 @@ function Profile() {
   };
 
   const handleCheckGroup = (value: string[]) => {
-    if (value.length >= 4) {
-      setIsCheckBoxAllTrue(true);
-    } else {
-      setIsCheckBoxAllTrue(false);
-    }
+    setIsCheckBoxAllTrue(value.length >= 4);
     setField((preState) => ({
       ...preState,
       services: value,
@@ -91,12 +93,7 @@ function Profile() {
     if (!isInputted(field)) return;
 
     try {
-      console.log({
-        ...field,
-        fieldName: field.field_name,
-        address: field.address_detail,
-        service: field.services,
-      });
+      console.log(field);
       await axios.post(
         'field',
         {
@@ -113,7 +110,7 @@ function Profile() {
       );
       router.push('/fields');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -127,19 +124,22 @@ function Profile() {
         <Button
           radius="sm"
           color="default"
-          className={`text-white ${isInputted(field) ? ' bg-primary-black' : 'bg-neutral-300'}`}
+          className={`text-white ${isInputted(field) ? 'bg-primary-black' : 'bg-neutral-300'}`}
           onPress={handleSaveField}
-          disabled
+          disabled={!isInputted(field)}
         >
-          Save
+          Save update
         </Button>
       </Header>
       <div className="mt-[60px]">
         <Background>
           <div className="px-3 flex flex-col">
-            <h3 className="pt-3 font-semibold text-xl">Create new field</h3>
+            <h3 className="pt-3 font-semibold text-xl">Field detail</h3>
           </div>
 
+          <div className="px-3 flex flex-col">
+            <NavigationContent />
+          </div>
           <div className="pt-4">
             <div className="px-3 flex flex-col gap-3">
               <h4 className="font-medium text-xl">Basic Info</h4>
