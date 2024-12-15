@@ -26,7 +26,9 @@ export const PlayerNavigationBar = () => {
       >
         <div className="flex flex-col justify-center items-center" onClick={() => router.push('/match-now')}>
           <MatchIcon isActive={isDashboard} />
-          <p className="text-sm pt-1 font-normal text-neutral-700">Match now</p>
+          <p className={`text-sm pt-1 ${isDashboard ? 'text-black font-[600]' : 'text-neutral-700 font-[400]'}`}>
+            Match now
+          </p>
         </div>
         <div className="flex flex-col justify-center items-center">
           <NavMap isActive={isMap} />
@@ -38,7 +40,9 @@ export const PlayerNavigationBar = () => {
         </div>
         <div className="flex flex-col justify-center items-center" onClick={() => router.push('/profile')}>
           <NavProfile isActive={isProfile} />
-          <p className="text-sm pt-1 font-semibold text-primary-black">Profile</p>
+          <p className={`text-sm pt-1 ${isProfile ? 'text-black font-[600]' : 'text-neutral-700 font-[400]'}`}>
+            Profile
+          </p>
         </div>
       </div>
     </footer>
