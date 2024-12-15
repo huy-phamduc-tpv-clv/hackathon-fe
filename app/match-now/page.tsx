@@ -28,17 +28,17 @@ export default function MatchNow() {
   const { getMatchList, setMatchList, swiftRight } = useMatchList();
   const { getUsrId } = useToken();
   const randomME = [
-    'top-[25px]',
+    'top-[26px]',
     'top-[80px]',
     'top-[150px]',
     'top-[120px] right-[65px]',
     'top-[120px] left-[65px]',
 
-    'bottom-[25px]',
-    'bottom-[80px]',
-    'bottom-[150px]',
-    'bottom-[120px] right-[65px]',
-    'bottom-[120px] left-[65px]',
+    'bottom-[18px]',
+    'bottom-[73px]',
+    'bottom-[143px]',
+    'bottom-[113px] right-[65px]',
+    'bottom-[113px] left-[65px]',
   ];
   const router = useRouter();
 
@@ -133,8 +133,9 @@ export default function MatchNow() {
                 alt=""
                 width={43}
                 height={43}
-                src={`/psframe_/psframe_1.svg`}
+                src={`/png/psframe_1.png`}
                 className={`absolute ${randomME[getRandomNumber(0, 9)]}`}
+                // className={`absolute ${randomME[8]}`}
               />
 
               <Image alt="" src={'/images/stadium.png'} width={330} height={400} />

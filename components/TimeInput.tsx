@@ -16,7 +16,7 @@ const TimeInput = ({
 	const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
 
-		if (/^[1-9]$|^[1-2][0-9]$|^2[0-3]$/.test(newValue) || newValue === '') {
+		if (/^[0-9]$|^[0-2][0-9]$|^2[0-3]$/.test(newValue) || newValue === '') {
 			setHour(newValue);
 			onHourChange(newValue);
 		}
@@ -25,7 +25,7 @@ const TimeInput = ({
 	const handleMinuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newValue = e.target.value;
 
-		if (/^[0-5]$|^[1-5][0-9]$/.test(newValue) || newValue === '') {
+		if (/^[0-5]$|^[0-5][0-9]$/.test(newValue) || newValue === '') {
 			setMinute(newValue);
 			onMinuteChange(newValue);
 		}
