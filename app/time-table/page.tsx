@@ -69,10 +69,10 @@ export default function TimeTable() {
   const [day, setDay] = useState({
     dateOfWeek: '',
     name: '',
-    endHour: '',
-    endMinute: '',
-    startHour: '',
-    startMinute: '',
+    endHour: '00',
+    endMinute: '00',
+    startHour: '00',
+    startMinute: '00',
   });
   const { setPlayerTimeTables, getPlayerTimeTables } = useToken();
 
@@ -91,10 +91,10 @@ export default function TimeTable() {
     setDay({
       dateOfWeek,
       name,
-      endHour: '',
-      endMinute: '',
-      startHour: '',
-      startMinute: '',
+      endHour: '00',
+      endMinute: '00',
+      startHour: '00',
+      startMinute: '00',
     });
     onOpen();
   };

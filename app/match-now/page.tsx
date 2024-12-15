@@ -237,7 +237,7 @@ export default function MatchNow() {
 
         <div className="flex mt-6 gap-4">
           <Button
-            className="w-full bg-[#009245] text-[#FFFFFFE5] rounded-[8px]"
+            className="w-full bg-primary-black text-[#FFFFFFE5] rounded-[8px]"
             onPress={() => router.push('/my-game')}
           >
             View My Game
